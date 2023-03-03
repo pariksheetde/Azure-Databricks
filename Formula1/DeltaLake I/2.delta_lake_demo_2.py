@@ -35,7 +35,7 @@ drivers_day1_df.createOrReplaceTempView("drivers_day1")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### Select 2nd day's data
+# MAGIC ##### SELECT 2nd Day's Data
 
 # COMMAND ----------
 
@@ -62,7 +62,7 @@ drivers_day2_df.createOrReplaceTempView("drivers_day2")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### Select 3rd day's data
+# MAGIC ##### SEELCT 3rd Day's Data
 
 # COMMAND ----------
 
