@@ -1,14 +1,14 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC #### 1.WRITE DATA TO DELTA LAKE (Managed Table)
-# MAGIC #### 2.WRITE DATA TO DELTA LAKE (External table)
-# MAGIC #### 3.READ DATA FROM DELTA LAKE (Table)
-# MAGIC #### 4.READ DATA FROM DELTA LAKE (File)
+# MAGIC ##### 1.WRITE DATA TO DELTA LAKE (Managed Table)
+# MAGIC ##### 2.WRITE DATA TO DELTA LAKE (External table)
+# MAGIC ##### 3.READ DATA FROM DELTA LAKE (Table)
+# MAGIC ##### 4.READ DATA FROM DELTA LAKE (File)
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### Select 1st day's data
+# MAGIC ##### SELECT 1st Day's Data
 
 # COMMAND ----------
 
