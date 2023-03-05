@@ -17,17 +17,16 @@ USING DELTA;
 
 -- COMMAND ----------
 
-INSERT INTO Delta.locations
-VALUES 
-(100, "London"),
-(110, "Berlin"),
-(120, "Moscow"),
-(130, "Dubai")
+TRUNCATE TABLE delta.locations;
 
 -- COMMAND ----------
 
 INSERT INTO Delta.locations
 VALUES 
+(100, "London"),
+(110, "Berlin"),
+(120, "Moscow"),
+(130, "Dubai"),
 (140, "Paris"),
 (150, "Paris"),
 (160, "Toronto"),
@@ -37,3 +36,15 @@ VALUES
 
 SELECT * FROM delta.locations
 ORDER BY 1 ASC;
+
+-- COMMAND ----------
+
+DESC DETAIL delta.locations;
+
+-- COMMAND ----------
+
+-- MAGIC %fs ls 'dbfs:/user/hive/warehouse/delta.db/locations'
+
+-- COMMAND ----------
+
+DESC HISTORY delta.locations;
