@@ -19,4 +19,4 @@ SELECT * FROM delta.locations@V2;
 
 -- COMMAND ----------
 
-
+DESC EXTENDED delta.locations;
