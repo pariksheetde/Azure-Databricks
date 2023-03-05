@@ -125,7 +125,7 @@ circuits_final_df.write.mode("overwrite").format("delta").saveAsTable("f1_delta.
 
 # COMMAND ----------
 
-# MAGIC %sql
+# MAGIC %sql 
 # MAGIC SELECT * FROM f1_delta.circuits;
 
 # COMMAND ----------
