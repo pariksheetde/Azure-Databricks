@@ -1,4 +1,9 @@
 -- Databricks notebook source
+-- MAGIC %md
+-- MAGIC ##### QUERY parquet data file from results
+
+-- COMMAND ----------
+
 SELECT 
 *, 
 input_file_name() as file_name 

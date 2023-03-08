@@ -1,4 +1,9 @@
 -- Databricks notebook source
+-- MAGIC %md
+-- MAGIC ##### QUERY json data file from drivers
+
+-- COMMAND ----------
+
 SELECT 
 *, 
 input_file_name() as file_name 
