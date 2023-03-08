@@ -1,6 +1,6 @@
 -- Databricks notebook source
 -- MAGIC %md
--- MAGIC ##### QUERY parquet data file from circuits
+-- MAGIC ##### QUERY parquet data file from processed/circuits
 
 -- COMMAND ----------
 

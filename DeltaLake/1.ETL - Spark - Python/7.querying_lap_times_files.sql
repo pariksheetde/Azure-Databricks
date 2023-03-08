@@ -1,6 +1,6 @@
 -- Databricks notebook source
 -- MAGIC %md
--- MAGIC ##### QUERY csv data file from pit_stops
+-- MAGIC ##### QUERY csv data file from processed/lap_times
 
 -- COMMAND ----------
 
