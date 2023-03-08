@@ -6,10 +6,15 @@ FROM csv.`/mnt/adobeadls/raw/incremental/2021-03-21/lap_times`
 
 -- COMMAND ----------
 
-DROP TABLE delta.lap_times_csv;
+SELECT 
+COUNT(*) AS CNT,
+input_file_name() AS file_name
+FROM csv.`/mnt/adobeadls/raw/incremental/2021-03-21/lap_times`
+GROUP BY input_file_name();
 
 -- COMMAND ----------
 
+DROP TABLE IF EXISTS delta.lap_times_csv;
 CREATE TABLE delta.lap_times_csv
 (raceId INT, driverId INT, lap INT, position INT, time STRING, milliseconds INT)
 USING CSV
@@ -25,21 +30,9 @@ SELECT * FROM delta.lap_times_csv;
 
 -- COMMAND ----------
 
-SELECT 
-COUNT(*) AS CNT,
-input_file_name() AS file_name
-FROM csv.`/mnt/adobeadls/raw/incremental/2021-03-21/lap_times`
-GROUP BY input_file_name();
+DESC EXTENDED delta.lap_times_csv;
 
 -- COMMAND ----------
 
 -- MAGIC %python
 -- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
-
--- COMMAND ----------
-
-DESC EXTENDED delta.lap_times_csv
-
--- COMMAND ----------
-
-DROP TABLE delta.lap_times_csv;
