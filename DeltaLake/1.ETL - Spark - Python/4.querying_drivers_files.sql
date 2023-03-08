@@ -25,18 +25,9 @@ FROM delta.drivers_json;
 
 -- COMMAND ----------
 
--- MAGIC %python
--- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
-
--- COMMAND ----------
-
-DESC EXTENDED delta.drivers_json
+DESC EXTENDED delta.drivers_json;
 
 -- COMMAND ----------
 
 -- MAGIC %python
 -- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
-
--- COMMAND ----------
-
-DROP TABLE delta.lap_times_csv;
