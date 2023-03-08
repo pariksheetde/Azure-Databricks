@@ -1,4 +1,9 @@
 -- Databricks notebook source
+-- MAGIC %md
+-- MAGIC ##### QUERY parquet data file from processed/qualifying
+
+-- COMMAND ----------
+
 SELECT 
 *, 
 input_file_name() as file_name 
@@ -14,8 +19,7 @@ GROUP BY input_file_name();
 
 -- COMMAND ----------
 
-DROP TABLE IF EXISTS delta.qualifying_parquet;
-CREATE TABLE delta.qualifying_parquet
+CREATE OR REPLACE TABLE delta.qualifying_parquet
 AS
 SELECT * FROM parquet.`/mnt/adobeadls/processed/qualifying`;
 

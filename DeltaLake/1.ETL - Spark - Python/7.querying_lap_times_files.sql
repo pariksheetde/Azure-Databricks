@@ -1,4 +1,9 @@
 -- Databricks notebook source
+-- MAGIC %md
+-- MAGIC ##### QUERY csv data file from processed/lap_times
+
+-- COMMAND ----------
+
 SELECT 
 *, 
 input_file_name() as file_name 
