@@ -21,18 +21,9 @@ DESC EXTENDED delta.orders;
 
 -- COMMAND ----------
 
-
-
--- COMMAND ----------
-
 SELECT COUNT(*) AS CNT FROM delta.orders;
 
 -- COMMAND ----------
 
 -- MAGIC %python
 -- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
-
--- COMMAND ----------
-
--- MAGIC %sql
--- MAGIC DROP TABLE delta.top_director_csv
