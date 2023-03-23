@@ -22,10 +22,6 @@ DESC EXTENDED delta.customers;
 
 -- COMMAND ----------
 
-
-
--- COMMAND ----------
-
 SELECT COUNT(*) AS CNT FROM delta.books_staging;
 
 -- COMMAND ----------
