@@ -9,7 +9,7 @@
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC DESC EXTENDED delta.customers; 
+# MAGIC DESC EXTENDED delta.customers;
 
 # COMMAND ----------
 
@@ -64,4 +64,20 @@
 
 # COMMAND ----------
 
+# MAGIC %sql
+# MAGIC SELECT
+# MAGIC o.customer_id,
+# MAGIC collect_set(o.books.book_id) AS Before_Flatten,
+# MAGIC array_distinct(flatten(collect_set(o.books.book_id))) AS After_Flatten
+# MAGIC FROM
+# MAGIC delta.orders o
+# MAGIC GROUP BY customer_id;
 
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC SELECT * FROM
+# MAGIC (
+# MAGIC SELECT *, explode(books) AS book FROM delta.orders) o
+# MAGIC JOIN delta.books_staging b
+# MAGIC ON o.book.book_id = b.book_id;
