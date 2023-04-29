@@ -17,7 +17,12 @@
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC SELECT * FROM f1_delta.drivers_merge TIMESTAMP AS OF '2022-12-26T06:22:56.000+0000'
+# MAGIC SELECT * FROM f1_delta.drivers_merge VERSION AS OF 2
+
+# COMMAND ----------
+
+# %sql
+# DESC HISTORY f1_delta.drivers_merge
 
 # COMMAND ----------
 
@@ -38,3 +43,7 @@
 
 # MAGIC %sql
 # MAGIC DESC HISTORY f1_delta.drivers_txn
+
+# COMMAND ----------
+
+dbutils.notebook.exit("EXECUTED SUCCESSFULLY")

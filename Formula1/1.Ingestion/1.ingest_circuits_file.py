@@ -1,14 +1,14 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC ####Define schema for circuits.csv file
-# MAGIC 
+# MAGIC #### DEFINE SCHEMA FOR CIRCUITS.CSV FILE
+# MAGIC
 # MAGIC ####----------------------------------------------------------------------------------
 # MAGIC 1. Pass the parameter for the file name
 # MAGIC 2. Ingest circuits.csv file
 # MAGIC 3. Remove non numeric data from percentage
 # MAGIC 4. Pivot the data by age group
 # MAGIC 5. Join to dim_country to get the country, 3 digit country code and the total population.
-# MAGIC 
+# MAGIC
 # MAGIC ####-----------------------------------------------------------------------------------
 
 # COMMAND ----------
@@ -23,7 +23,7 @@
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Pass the parameter for the file name
+# MAGIC #### PASS THE PARAMETER FOR THE FILE NAME
 
 # COMMAND ----------
 
@@ -32,12 +32,12 @@ v_data_source = dbutils.widgets.get("p_data_source")
 
 # COMMAND ----------
 
-print(raw_path)
+print(v_data_source)
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Define schema for circuits.csv
+# MAGIC #### DEFINE SCHEMA FOR CIRCUITS.CSV
 
 # COMMAND ----------
 
@@ -59,7 +59,7 @@ circuits_schema = StructType(fields =
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Step 2. Ingest circuits.csv file
+# MAGIC #### STEP 2. INGEST CIRCUITS.CSV FILE
 
 # COMMAND ----------
 
@@ -76,7 +76,7 @@ print(raw_path)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Select Required Columns that needs to be processed
+# MAGIC #### SELECT REQUIRED COLUMNS THAT NEEDS TO BE PROCESSED
 
 # COMMAND ----------
 
@@ -93,7 +93,7 @@ display(sel_circuits_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Rename the columns as required
+# MAGIC #### RENAME THE COLUMNS AS REQUIRED
 
 # COMMAND ----------
 
@@ -107,7 +107,7 @@ display(rename_circuits_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Add new columns
+# MAGIC #### ADD NEW COLUMNS
 
 # COMMAND ----------
 
@@ -124,16 +124,46 @@ display(circuits_final_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Replicate the circuits data inside processed database
+# MAGIC #### WRITE DATA TO DATALAKE AS PARQUET
 
 # COMMAND ----------
 
-circuits_final_df.write.mode("overwrite").format("parquet").saveAsTable("f1_etl.circuits")
+circuits_final_df.write.mode("overwrite").parquet(f"{processed_path}/circuits")
+print(processed_path)
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC #### READ THE DATA WE WROTE TO DATALAKE BACK INTO A DATAFRAME TO PROVE THE WRITE WORKED
+
+# COMMAND ----------
+
+validate_circuits_df = spark.read \
+.parquet(f"{processed_path}/circuits")
+
+display(validate_circuits_df)
+validate_circuits_df.printSchema()
+print(f"Number of Records Read {validate_circuits_df.count()}")
+print(processed_path)
 
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC SELECT COUNT(*) as cnt FROM f1_etl.circuits;
+# MAGIC -- SELECT * FROM parquet.`f"{processed_path}/circuits"`;
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC #### REPLICATE THE CIRCUITS DATA INSIDE PROCESSED DATABASE
+
+# COMMAND ----------
+
+# validate_circuits_df.write.mode("overwrite").format("parquet").saveAsTable("f1_processed.circuits")
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC -- SELECT COUNT(*) as cnt FROM f1_processed.circuits;
 
 # COMMAND ----------
 
