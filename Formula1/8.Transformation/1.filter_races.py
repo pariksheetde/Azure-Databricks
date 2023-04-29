@@ -24,3 +24,7 @@ from pyspark.sql.functions import col
 
 filtered_races_df = dl_races_df.filter((dl_races_df["race_year"] == 2019) & (dl_races_df["name"] != "Australian Grand Prix"))
 display(filtered_races_df)
+
+# COMMAND ----------
+
+dbutils.notebook.exit("EXECUTED SUCCESSFULLY")

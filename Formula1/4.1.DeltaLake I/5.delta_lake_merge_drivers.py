@@ -138,7 +138,3 @@ print(f"Number of Records {driver_day3_df.count()}")
 
 # MAGIC %sql
 # MAGIC SELECT * FROM f1_delta.driver_merge tgt;
-
-# COMMAND ----------
-
-
