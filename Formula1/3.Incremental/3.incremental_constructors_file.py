@@ -114,3 +114,8 @@ rename_constructors_df.write.mode("overwrite").format("parquet").saveAsTable("f1
 # COMMAND ----------
 
 dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC SELECT * FROM f1_incremental.constructors;

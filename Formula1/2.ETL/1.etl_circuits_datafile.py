@@ -1,6 +1,20 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC #####Define schema for circuits.csv file
+# MAGIC ####Define schema for circuits.csv file
+# MAGIC
+# MAGIC ####----------------------------------------------------------------------------------
+# MAGIC 1. Pass the parameter for the file name
+# MAGIC 2. Ingest circuits.csv file
+# MAGIC 3. Remove non numeric data from percentage
+# MAGIC 4. Pivot the data by age group
+# MAGIC 5. Join to dim_country to get the country, 3 digit country code and the total population.
+# MAGIC
+# MAGIC ####-----------------------------------------------------------------------------------
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ##### Define the paths for different environments
 
 # COMMAND ----------
 
@@ -18,17 +32,12 @@ v_data_source = dbutils.widgets.get("p_data_source")
 
 # COMMAND ----------
 
-# MAGIC %md
-# MAGIC #####Pass the parameter for the file date
-
-# COMMAND ----------
-
-dbutils.widgets.text("p_file_date", "2021-03-21")
-v_file_date = dbutils.widgets.get("p_file_date")
-
-# COMMAND ----------
-
 print(raw_path)
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ##### Define schema for circuits.csv
 
 # COMMAND ----------
 
@@ -50,14 +59,14 @@ circuits_schema = StructType(fields =
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Ingest circuits.csv file
+# MAGIC ##### Step 2. Ingest circuits.csv file
 
 # COMMAND ----------
 
 circuits_df = spark.read \
 .option("header", True) \
 .schema(circuits_schema) \
-.csv(f"{raw_path}/incremental/{v_file_date}/circuits.csv")
+.csv(f"{raw_path}/circuits.csv")
 
 display(circuits_df)
 circuits_df.printSchema()
@@ -67,11 +76,12 @@ print(raw_path)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Select required columns
+# MAGIC ##### Select Required Columns that needs to be processed
 
 # COMMAND ----------
 
 from pyspark.sql.functions import col, lit
+
 sel_circuits_df = circuits_df.select(
                                      col("circuitId").alias("circuit_id"), 
                                      col("circuitRef").alias("circuit_ref"),
@@ -83,22 +93,21 @@ display(sel_circuits_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Rename the columns as required
+# MAGIC ##### Rename the columns as required
 
 # COMMAND ----------
 
 rename_circuits_df = sel_circuits_df.withColumnRenamed("lat", "latitude") \
 .withColumnRenamed("lng", "longitude") \
 .withColumnRenamed("alt", "altitude") \
-.withColumn("file_name", lit(v_data_source)) \
-.withColumn("file_date", lit(v_file_date))
+.withColumn("file_name", lit(v_data_source))
 
 display(rename_circuits_df)
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Step 5. Add new columns
+# MAGIC ##### Add new columns
 
 # COMMAND ----------
 
@@ -115,44 +124,16 @@ display(circuits_final_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Write data to DataLake as parquet
+# MAGIC #####Replicate the circuits data inside processed database
 
 # COMMAND ----------
 
-# circuits_final_df.write.mode("overwrite").parquet(f"{incremental_path}/circuits")
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC #####Read the data we wrote to DataLake back into a DataFrame to prove the write worked
-
-# COMMAND ----------
-
-# validate_circuits_df = spark.read \
-# .parquet(f"{incremental_path}/circuits")
-
-# display(validate_circuits_df)
-# validate_circuits_df.printSchema()
-# print(f"Number of Records Read {validate_circuits_df.count()}")
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC #####Replicate the circuits data inside incremental DB
-
-# COMMAND ----------
-
-circuits_final_df.write.mode("overwrite").format("parquet").saveAsTable("f1_incremental.circuits")
+circuits_final_df.write.mode("overwrite").format("parquet").saveAsTable("f1_etl.circuits")
 
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC SELECT * FROM f1_incremental.circuits;
-
-# COMMAND ----------
-
-# MAGIC %sql
-# MAGIC SELECT COUNT(*) as cnt FROM f1_incremental.circuits;
+# MAGIC SELECT COUNT(*) as cnt FROM f1_etl.circuits;
 
 # COMMAND ----------
 

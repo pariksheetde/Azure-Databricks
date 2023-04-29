@@ -142,7 +142,8 @@ else:
 # MAGIC file_date 
 # MAGIC FROM 
 # MAGIC f1_incremental.lap_times
-# MAGIC GROUP BY 2;
+# MAGIC GROUP BY 2
+# MAGIC ORDER BY file_date ASC;
 
 # COMMAND ----------
 

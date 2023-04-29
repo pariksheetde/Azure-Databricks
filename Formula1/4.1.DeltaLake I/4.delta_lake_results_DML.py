@@ -41,3 +41,7 @@ results_managed.update("constructorid = 1", {"points" : "100"})
 
 # MAGIC %sql
 # MAGIC SELECT * FROM f1_delta.results_external ORDER BY 1 ASC;
+
+# COMMAND ----------
+
+dbutils.notebook.exit("EXECUTED SUCCESSFULLY")

@@ -144,7 +144,8 @@ else:
 # MAGIC COUNT(*) as cnt,
 # MAGIC file_date 
 # MAGIC FROM f1_incremental.pit_stops
-# MAGIC GROUP BY 2;
+# MAGIC GROUP BY 2
+# MAGIC ORDER BY file_date ASC;
 
 # COMMAND ----------
 
