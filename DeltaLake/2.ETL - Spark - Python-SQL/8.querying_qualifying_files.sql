@@ -19,19 +19,24 @@ GROUP BY input_file_name();
 
 -- COMMAND ----------
 
-CREATE OR REPLACE TABLE delta.qualifying_parquet
+CREATE OR REPLACE TABLE dw_analytics.qualifying_parquet
 AS
 SELECT * FROM parquet.`/mnt/adobeadls/processed/qualifying`;
 
 -- COMMAND ----------
 
-SELECT * FROM delta.qualifying_parquet;
+SELECT * FROM dw_analytics.qualifying_parquet;
 
 -- COMMAND ----------
 
-DESC EXTENDED delta.qualifying_parquet;
+DESC EXTENDED dw_analytics.qualifying_parquet;
 
 -- COMMAND ----------
 
 -- MAGIC %python
 -- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
+
+-- COMMAND ----------
+
+-- MAGIC %sql
+-- MAGIC DROP TABLE IF EXISTS delta.qualifying_parquet;

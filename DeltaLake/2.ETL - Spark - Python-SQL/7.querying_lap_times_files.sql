@@ -19,9 +19,16 @@ GROUP BY input_file_name();
 
 -- COMMAND ----------
 
-DROP TABLE IF EXISTS delta.lap_times_csv;
-CREATE TABLE delta.lap_times_csv
-(raceId INT, driverId INT, lap INT, position INT, time STRING, milliseconds INT)
+DROP TABLE IF EXISTS dw_analytics.lap_times_csv;
+CREATE TABLE dw_analytics.lap_times_csv
+(
+  raceId INT, 
+  driverId INT, 
+  lap INT, 
+  position INT, 
+  time STRING, 
+  milliseconds INT
+)
 USING CSV
 OPTIONS
 (
@@ -31,13 +38,18 @@ LOCATION "/mnt/adobeadls/raw/incremental/2021-03-21/lap_times"
 
 -- COMMAND ----------
 
-SELECT * FROM delta.lap_times_csv;
+SELECT * FROM dw_analytics.lap_times_csv;
 
 -- COMMAND ----------
 
-DESC EXTENDED delta.lap_times_csv;
+DESC EXTENDED dw_analytics.lap_times_csv;
 
 -- COMMAND ----------
 
 -- MAGIC %python
 -- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
+
+-- COMMAND ----------
+
+-- MAGIC %sql
+-- MAGIC DROP TABLE IF EXISTS delta.lap_times_csv;

@@ -63,7 +63,21 @@ mount_adls("etl")
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC #### mount presentation container
+
+# COMMAND ----------
+
 mount_adls("presentation")
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC #### mount dwanalytics container
+
+# COMMAND ----------
+
+mount_adls("dwanalytics")
 
 # COMMAND ----------
 
