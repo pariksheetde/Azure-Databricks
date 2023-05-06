@@ -1,6 +1,6 @@
 -- Databricks notebook source
 -- MAGIC %md
--- MAGIC ##### QUERY json data file from processed/drivers
+-- MAGIC ##### Query json data file from processed/drivers
 
 -- COMMAND ----------
 
@@ -11,8 +11,8 @@ FROM json.`/mnt/adobeadls/raw/incremental/2021-03-21/drivers.json`
 
 -- COMMAND ----------
 
-DROP TABLE delta.drivers_json;
-CREATE TABLE delta.drivers_json
+DROP TABLE IF EXISTS dw_analytics.drivers_json;
+CREATE TABLE IF NOT EXISTS dw_analytics.drivers_json
 AS
 SELECT * FROM json.`/mnt/adobeadls/raw/incremental/2021-03-21/drivers.json`;
 
@@ -26,13 +26,18 @@ driverref,
 nationality,
 name.forename AS f_name,
 name.surname AS l_name
-FROM delta.drivers_json;
+FROM dw_analytics.drivers_json;
 
 -- COMMAND ----------
 
-DESC EXTENDED delta.drivers_json;
+DESC EXTENDED dw_analytics.drivers_json;
 
 -- COMMAND ----------
 
 -- MAGIC %python
 -- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
+
+-- COMMAND ----------
+
+-- MAGIC %sql
+-- MAGIC DROP TABLE IF EXISTS delta.drivers_json;

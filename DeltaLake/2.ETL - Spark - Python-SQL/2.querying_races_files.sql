@@ -1,6 +1,6 @@
 -- Databricks notebook source
 -- MAGIC %md
--- MAGIC ##### QUERY parquet data file from processed/races
+-- MAGIC ##### Query parquet data file from processed/races
 
 -- COMMAND ----------
 
@@ -19,25 +19,34 @@ GROUP BY input_file_name();
 
 -- COMMAND ----------
 
-DROP TABLE IF EXISTS delta.races_parquet;
-CREATE TABLE delta.races_parquet
+DROP TABLE IF EXISTS dw_analytics.races_parquet;
+CREATE TABLE dw_analytics.races_parquet
 (
-race_id INT, round INT, circuit_id INT,
-name STRING, file_name STRING, load_ts TIMESTAMP,
-race_ts TIMESTAMP
+  race_id INT, 
+  round INT, 
+  circuit_id INT,
+  name STRING, 
+  file_name STRING, 
+  load_ts TIMESTAMP,
+  race_ts TIMESTAMP
 )
 USING parquet
 LOCATION "/mnt/adobeadls/processed/races";
 
 -- COMMAND ----------
 
-SELECT * FROM delta.races_parquet WHERE race_year = 2015;
+SELECT * FROM dw_analytics.races_parquet WHERE race_year = 2015;
 
 -- COMMAND ----------
 
-DESC EXTENDED delta.races_parquet;
+DESC EXTENDED dw_analytics.races_parquet;
 
 -- COMMAND ----------
 
 -- MAGIC %python
 -- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
+
+-- COMMAND ----------
+
+-- MAGIC %sql
+-- MAGIC DROP TABLE IF EXISTS delta.races_parquet;
