@@ -4,7 +4,7 @@
 -- COMMAND ----------
 
 -- %python
--- files = dbutils.fs.ls(f"{dataset_bookstore}/books-csv")
+-- files = dbutils.fs.ls(f"{dataset_bookstore}")
 -- display(files)
 
 -- COMMAND ----------
@@ -178,6 +178,10 @@ SELECT count(*) AS CNT FROM dw_analytics.books_parsed;
 
 -- COMMAND ----------
 
+SELECT * FROM dw_analytics.books_parsed;
+
+-- COMMAND ----------
+
 SELECT 
 book_id
 ,count(*) AS CNT
@@ -189,7 +193,9 @@ HAVING CNT > 1;
 
 MERGE INTO dw_analytics.books AS tgt
 USING dw_analytics.books_parsed src
-ON
+ON tgt.book_id = src.book_id
+  WHEN MATCHED THEN UPDATE *
+  WHEN NOT MATCHED THEN 
 
 -- COMMAND ----------
 
