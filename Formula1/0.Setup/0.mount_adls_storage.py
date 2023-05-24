@@ -90,6 +90,11 @@ mount_adls("incremental")
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC #### mount deltalake container
+
+# COMMAND ----------
+
 mount_adls("deltalake")
 
 # COMMAND ----------
