@@ -1,25 +1,25 @@
 -- Databricks notebook source
--- MAGIC %run ../0.Includes/1.Copy-Datasets
+-- MAGIC %md
+-- MAGIC #### READ THE CUSTOMERS DATA FROM ADLS (Azure Data Lake Storage)
 
 -- COMMAND ----------
 
-SELECT * FROM json.`${dataset.bookstore}/customers-json`
+SELECT * FROM json.`/mnt/adobeadls/dwanalytics/customers/*`
 
 -- COMMAND ----------
 
 SELECT
-input_file_name() as source_file
-,count(*) AS cnt
-FROM json.`${dataset.bookstore}/customers-json`
-GROUP BY source_file
-ORDER BY source_file ASC;
+input_file_name() as file_name,
+count(*) AS cnt
+FROM json.`/mnt/adobeadls/dwanalytics/customers/*`
+GROUP BY file_name;
 
 -- COMMAND ----------
 
 DROP TABLE IF EXISTS dw_analytics.customers;
 CREATE TABLE dw_analytics.customers
 AS
-SELECT * FROM json.`${dataset.bookstore}/customers-json`;
+SELECT * FROM json.`/mnt/adobeadls/dwanalytics/customers/*`;
 
 -- COMMAND ----------
 
@@ -27,20 +27,16 @@ SELECT COUNT(*) AS CNT FROM dw_analytics.customers;
 
 -- COMMAND ----------
 
-SELECT
-input_file_name() AS source_file
-,count(*) AS cnt
-FROM dw_analytics.customers
-GROUP BY source_file;
+DESCRIBE EXTENDED dw_analytics.customers;
 
 -- COMMAND ----------
 
-SELECT * FROM json.`${dataset.bookstore}/customers-json-new`;
+SELECT * FROM json.`/mnt/adobeadls/dwanalytics/customers/customers-json-new/export_*.json`;
 
 -- COMMAND ----------
 
 CREATE OR REPLACE TEMP VIEW customers_temp_vw
-AS SELECT * FROM json.`${dataset.bookstore}/customers-json-new`;
+AS SELECT * FROM json.`/mnt/adobeadls/dwanalytics/customers/customers-json-new/`;
 
 MERGE INTO dw_analytics.customers tgt
 USING customers_temp_vw src
@@ -53,10 +49,6 @@ WHEN NOT MATCHED THEN
 -- COMMAND ----------
 
 SELECT count(*) AS cnt FROM dw_analytics.customers;
-
--- COMMAND ----------
-
-DESC EXTENDED dw_analytics.customers;
 
 -- COMMAND ----------
 
