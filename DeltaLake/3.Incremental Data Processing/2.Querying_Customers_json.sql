@@ -16,14 +16,21 @@ GROUP BY file_name;
 
 -- COMMAND ----------
 
+-- MAGIC %md
+-- MAGIC #### CREATE DELTA TABLE TO LOAD CUSTOMERS DATA
+
+-- COMMAND ----------
+
 DROP TABLE IF EXISTS dw_analytics.customers;
 CREATE TABLE dw_analytics.customers
 AS
 SELECT * FROM json.`/mnt/adobeadls/dwanalytics/customers/*`;
 
+SELECT * FROM dw_analytics.customers;
+
 -- COMMAND ----------
 
-SELECT COUNT(*) AS CNT FROM dw_analytics.customers;
+SELECT COUNT(*) AS count FROM dw_analytics.customers;
 
 -- COMMAND ----------
 
@@ -48,7 +55,7 @@ WHEN NOT MATCHED THEN
 
 -- COMMAND ----------
 
-SELECT count(*) AS cnt FROM dw_analytics.customers;
+SELECT count(*) AS count FROM dw_analytics.customers;
 
 -- COMMAND ----------
 
