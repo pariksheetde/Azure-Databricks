@@ -43,7 +43,7 @@ DESC EXTENDED dw_analytics.books;
 -- COMMAND ----------
 
 -- MAGIC %md
--- MAGIC #### READ RAW BOOKS.CSV FROM ADLS
+-- MAGIC #### READ THE BOOKS DATA FROM ADLS (Azure Data Lake Storage)
 
 -- COMMAND ----------
 

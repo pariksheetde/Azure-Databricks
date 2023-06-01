@@ -1,20 +1,23 @@
 -- Databricks notebook source
--- MAGIC %run ../0.Includes/1.Copy-Datasets
+-- MAGIC %md
+-- MAGIC #### READ THE ORDERS DATA FROM ADLS (Azure Data Lake Storage)
 
 -- COMMAND ----------
 
-SELECT * FROM parquet.`${dataset.bookstore}/orders`
+SELECT * FROM parquet.`/mnt/adobeadls/dwanalytics/orders/orders/`
 
 -- COMMAND ----------
 
-DROP TABLE IF EXISTS dw_analytics.orders;
-CREATE TABLE IF NOT EXISTS dw_analytics.orders
+CREATE OR REPLACE TABLE dw_analytics.orders
 AS
-SELECT * FROM parquet.`${dataset.bookstore}/orders`;
-
--- COMMAND ----------
+SELECT * FROM parquet.`/mnt/adobeadls/dwanalytics/orders/orders/`;
 
 SELECT * FROM dw_analytics.orders;
+
+-- COMMAND ----------
+
+-- MAGIC %md
+-- MAGIC #### VALIDATE THE RECORD COUNT
 
 -- COMMAND ----------
 
@@ -22,8 +25,12 @@ SELECT count(*) AS cnt FROM dw_analytics.orders;
 
 -- COMMAND ----------
 
+DESCRIBE EXTENDED dw_analytics.orders;
+
+-- COMMAND ----------
+
 INSERT OVERWRITE dw_analytics.orders
-SELECT * FROM parquet.`${dataset.bookstore}/orders`;
+SELECT * FROM parquet.`/mnt/adobeadls/dwanalytics/orders/orders/`;
 
 -- COMMAND ----------
 
@@ -35,7 +42,12 @@ DESC HISTORY dw_analytics.orders;
 
 -- COMMAND ----------
 
-SELECT count(*) AS cnt FROM dw_analytics.orders;
+INSERT INTO dw_analytics.orders
+SELECT * FROM parquet.`/mnt/adobeadls/dwanalytics/orders/orders-new/`
+
+-- COMMAND ----------
+
+SELECT COUNT(*) AS count FROM dw_analytics.orders;
 
 -- COMMAND ----------
 
@@ -43,8 +55,7 @@ SELECT
 order_id
 ,order_timestamp
 ,books
-,explode(books)
-,
+,explode(books) as explode_books
 FROM
 dw_analytics.orders
 ORDER BY 1 ASC;
