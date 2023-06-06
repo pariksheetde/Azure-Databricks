@@ -1,6 +1,6 @@
 -- Databricks notebook source
 -- MAGIC %md
--- MAGIC ##### QUERY parquet data file from processed/circuits
+-- MAGIC ##### Query parquet data file from processed/circuits
 
 -- COMMAND ----------
 
@@ -24,23 +24,30 @@ ORDER BY CNT DESC;
 
 -- COMMAND ----------
 
-DROP TABLE IF EXISTS delta.circuits_parquet;
-CREATE TABLE delta.circuits_parquet
-(circuit_id INT, circuit_ref STRING, name STRING, 
-location STRING, country STRING, latitude DOUBLE, 
-longitude DOUBLE, altitude DOUBLE,
-file_name STRING, load_ts TIMESTAMP
+DROP TABLE IF EXISTS dw_analytics.circuits_parquet;
+CREATE TABLE dw_analytics.circuits_parquet
+(
+    circuit_id INT, 
+    circuit_ref STRING, 
+    name STRING, 
+    location STRING, 
+    country STRING, 
+    latitude DOUBLE, 
+    longitude DOUBLE, 
+    altitude DOUBLE,
+    file_name STRING, 
+    load_ts TIMESTAMP
 )
 USING parquet
 LOCATION "/mnt/adobeadls/processed/circuits/*";
 
 -- COMMAND ----------
 
-SELECT * FROM delta.circuits_parquet;
+SELECT * FROM dw_analytics.circuits_parquet;
 
 -- COMMAND ----------
 
-DESC EXTENDED delta.circuits_parquet;
+DESC EXTENDED dw_analytics.circuits_parquet;
 
 -- COMMAND ----------
 
@@ -49,4 +56,5 @@ DESC EXTENDED delta.circuits_parquet;
 
 -- COMMAND ----------
 
-DROP TABLE delta.circuits_parquet;
+-- MAGIC %sql
+-- MAGIC DROP TABLE IF EXISTS delta.circuits_parquet;

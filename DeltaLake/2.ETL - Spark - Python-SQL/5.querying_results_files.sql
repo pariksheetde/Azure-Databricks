@@ -1,6 +1,6 @@
 -- Databricks notebook source
 -- MAGIC %md
--- MAGIC ##### QUERY parquet data file from processed/results
+-- MAGIC ##### Query parquet data file from processed/results
 
 -- COMMAND ----------
 
@@ -11,8 +11,8 @@ FROM parquet.`/mnt/adobeadls/processed/results`
 
 -- COMMAND ----------
 
-DROP TABLE IF EXISTS delta.results_parquet;
-CREATE TABLE delta.results_parquet
+DROP TABLE IF EXISTS dw_analytics.results_parquet;
+CREATE TABLE dw_analytics.results_parquet
 AS
 SELECT * FROM parquet.`/mnt/adobeadls/processed/results`;
 
@@ -20,14 +20,19 @@ SELECT * FROM parquet.`/mnt/adobeadls/processed/results`;
 
 SELECT
 *
-FROM delta.results_parquet 
+FROM dw_analytics.results_parquet 
 LIMIT 15;
 
 -- COMMAND ----------
 
-DESC EXTENDED delta.results_parquet;
+DESC EXTENDED dw_analytics.results_parquet;
 
 -- COMMAND ----------
 
 -- MAGIC %python
 -- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
+
+-- COMMAND ----------
+
+-- MAGIC %sql
+-- MAGIC DROP TABLE IF EXISTS delta.results_parquet;
