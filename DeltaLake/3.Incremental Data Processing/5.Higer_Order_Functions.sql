@@ -3,7 +3,7 @@
 
 -- COMMAND ----------
 
-SELECT * FROM delta.orders;
+SELECT * FROM dw_analytics.orders;
 
 -- COMMAND ----------
 
@@ -17,7 +17,7 @@ SELECT
       o.order_id,
       o.books,
       FILTER(books, i -> i.quantity >=2) AS copies
-      FROM delta.orders o)
+      FROM dw_analytics.orders o)
 WHERE size(copies) > 0;
 
 -- COMMAND ----------
@@ -28,4 +28,4 @@ o.books,
 TRANSFORM(
   books, b -> CAST(b.subtotal * .80 AS INT)
 ) AS total_after_discount
-FROM delta.orders o;
+FROM dw_analytics.orders o;
