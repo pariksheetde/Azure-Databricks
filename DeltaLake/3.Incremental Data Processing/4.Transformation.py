@@ -110,3 +110,7 @@
 # MAGIC SELECT *, explode(books) AS book FROM delta.orders) o
 # MAGIC JOIN delta.books_staging b
 # MAGIC ON o.book.book_id = b.book_id;
+
+# COMMAND ----------
+
+dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
