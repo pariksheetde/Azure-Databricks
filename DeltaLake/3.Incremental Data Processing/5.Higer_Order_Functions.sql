@@ -1,9 +1,10 @@
 -- Databricks notebook source
--- MAGIC %run ../0.Includes/1.Copy-Datasets
+SELECT * FROM dw_analytics.orders LIMIT 10;
 
 -- COMMAND ----------
 
-SELECT * FROM dw_analytics.orders;
+-- MAGIC %md
+-- MAGIC #### FILTER lambda function to filter out unwanted records
 
 -- COMMAND ----------
 
@@ -22,6 +23,11 @@ WHERE size(copies) > 0;
 
 -- COMMAND ----------
 
+-- MAGIC %md
+-- MAGIC #### TRANSFORM lambda function to transform records
+
+-- COMMAND ----------
+
 SELECT
 o.order_id,
 o.books,
@@ -29,3 +35,8 @@ TRANSFORM(
   books, b -> CAST(b.subtotal * .80 AS INT)
 ) AS total_after_discount
 FROM dw_analytics.orders o;
+
+-- COMMAND ----------
+
+-- MAGIC %python
+-- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
