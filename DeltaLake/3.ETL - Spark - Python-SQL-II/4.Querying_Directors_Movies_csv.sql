@@ -4,7 +4,7 @@
 
 -- COMMAND ----------
 
-SELECT * FROM csv.`/mnt/adobeadls/dwanalytics/movies/*.csv`
+SELECT * FROM csv.`/mnt/adobeadls/dwanalytics/movies/processed/*.csv`
 
 -- COMMAND ----------
 
@@ -19,7 +19,7 @@ CREATE OR REPLACE TEMP VIEW directors_movies_staging_temp_vw
 USING CSV
 OPTIONS
 (
-  path = "/mnt/adobeadls/dwanalytics/movies/*.csv",
+  path = "/mnt/adobeadls/dwanalytics/movies/processed/*.csv",
   header = "true"
 );
 
@@ -35,9 +35,15 @@ CREATE OR REPLACE TABLE dw_analytics.directors_movies
 AS
 SELECT * FROM directors_movies_staging_temp_vw;
 
+-- COMMAND ----------
+
 SELECT * FROM dw_analytics.directors_movies;
 
 -- COMMAND ----------
 
 -- MAGIC %python
 -- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
+
+-- COMMAND ----------
+
+DROP TABLE dw_analytics.directors_movies;
