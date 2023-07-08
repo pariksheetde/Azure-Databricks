@@ -21,11 +21,11 @@ spark.readStream \
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC   SELECT 
+# MAGIC   SELECT
 # MAGIC   count(moviename) as cnt,
 # MAGIC   f_name||' '||l_name as directors
 # MAGIC   FROM directors_movies_streaming_temp_vw
-# MAGIC   GROUP BY directors
+# MAGIC   GROUP BY directors;
 
 # COMMAND ----------
 
@@ -53,6 +53,16 @@ spark.table("directors_movie_aggregation_tmp_vw") \
     .outputMode('complete') \
     .option("checkpointLocation", "/mnt/adobeadls/dwanalytics/checkpoint/directors_movie_aggregation") \
     .table("dw_analytics.directors_movie_aggregation")
+
+# COMMAND ----------
+
+spark.table("directors_movie_aggregation_tmp_vw") \
+    .writeStream \
+    .trigger(availableNow = True) \
+    .outputMode('complete') \
+    .option("checkpointLocation", "/mnt/adobeadls/dwanalytics/checkpoint/directors_movie_aggregation") \
+    .table("dw_analytics.directors_movie_aggregation") \
+    .awaitTermination()
 
 # COMMAND ----------
 
