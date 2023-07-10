@@ -37,12 +37,16 @@ SELECT * FROM directors_movies_staging_temp_vw;
 
 -- COMMAND ----------
 
-SELECT * FROM dw_analytics.directors_movies;
+SELECT * FROM dw_analytics.directors_movies ORDER BY 1;
 
 -- COMMAND ----------
 
 -- MAGIC %python
 -- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
+
+-- COMMAND ----------
+
+SELECT * FROM dw_analytics.directors_movies ORDER BY 1;
 
 -- COMMAND ----------
 
