@@ -1,44 +1,10 @@
 -- Databricks notebook source
 -- MAGIC %md
--- MAGIC #### READ THE BOOKS DATA FROM ADLS (Azure Data Lake Storage)
+-- MAGIC #### READ THE NEW ARRIVING BOOKS DATA FROM ADLS (Azure Data Lake Storage)
 
 -- COMMAND ----------
 
-SELECT * FROM csv.`/mnt/adobeadls/dwanalytics/books/processed/export_*.csv`
-
--- COMMAND ----------
-
-CREATE OR REPLACE TEMP VIEW books_staging_temp_vw
-(
-  book_id STRING,
-  title STRING,
-  author STRING,
-  category STRING,
-  price DOUBLE
-)
-USING CSV
-OPTIONS
-(
-  path = "/mnt/adobeadls/dwanalytics/books/processed/export_*.csv",
-  header = "true",
-  sep = ";"
-);
-
-SELECT * FROM books_staging_temp_vw ORDER BY 1;
-
--- COMMAND ----------
-
-SELECT COUNT(*) AS count FROM books_staging_temp_vw;
-
--- COMMAND ----------
-
-CREATE OR REPLACE TABLE dw_analytics.books
-AS
-SELECT * FROM books_staging_temp_vw;
-
--- COMMAND ----------
-
-DESC EXTENDED dw_analytics.books;
+SELECT * FROM csv.`/mnt/adobeadls/dwanalytics/books/books-csv-new/*.csv`
 
 -- COMMAND ----------
 
@@ -58,7 +24,7 @@ OPTIONS
   sep = ";"
 );
 
-SELECT * FROM books_temp_vw;
+SELECT * FROM books_temp_vw ORDER BY 1;
 
 -- COMMAND ----------
 
@@ -70,8 +36,12 @@ ON tgt.book_id = src.book_id
 
 -- COMMAND ----------
 
--- MAGIC %md
--- MAGIC #### CREATE DELTA TABLE
+SELECT count(*) AS CNT FROM dw_analytics.books;
+
+-- COMMAND ----------
+
+-- MAGIC %python
+-- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
 
 -- COMMAND ----------
 
@@ -84,8 +54,3 @@ ON tgt.book_id = src.book_id
 -- MAGIC     .option("header", "true") \
 -- MAGIC     .option("delimiter", ";") \
 -- MAGIC     .save("/mnt/adobeadls/processed/books/")
-
--- COMMAND ----------
-
--- MAGIC %python
--- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")

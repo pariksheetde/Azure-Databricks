@@ -21,11 +21,11 @@ spark.readStream \
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC   SELECT
-# MAGIC   count(moviename) as cnt,
-# MAGIC   f_name||' '||l_name as directors
-# MAGIC   FROM directors_movies_streaming_temp_vw
-# MAGIC   GROUP BY directors;
+# MAGIC SELECT
+# MAGIC count(moviename) as cnt,
+# MAGIC f_name||' '||l_name as directors
+# MAGIC FROM directors_movies_streaming_temp_vw
+# MAGIC GROUP BY directors;
 
 # COMMAND ----------
 
@@ -33,11 +33,11 @@ spark.readStream \
 # MAGIC CREATE OR REPLACE TEMP VIEW directors_movie_aggregation_tmp_vw
 # MAGIC AS
 # MAGIC (
-# MAGIC   SELECT 
-# MAGIC   count(moviename) as cnt,
-# MAGIC   f_name||' '||l_name as directors
-# MAGIC   FROM directors_movies_streaming_temp_vw
-# MAGIC   GROUP BY directors
+# MAGIC SELECT 
+# MAGIC count(moviename) as cnt,
+# MAGIC f_name||' '||l_name as directors
+# MAGIC FROM directors_movies_streaming_temp_vw
+# MAGIC GROUP BY directors
 # MAGIC );
 
 # COMMAND ----------
@@ -49,20 +49,10 @@ spark.readStream \
 
 spark.table("directors_movie_aggregation_tmp_vw") \
     .writeStream \
-    .trigger(processingTime='1 seconds') \
+    .trigger(processingTime = '1 seconds') \
     .outputMode('complete') \
-    .option("checkpointLocation", "/mnt/adobeadls/dwanalytics/checkpoint/directors_movie_aggregation") \
+    .option("checkpointLocation", "/mnt/adobeadls/dwanalytics/movies/checkpoint/directors_movie_aggregation") \
     .table("dw_analytics.directors_movie_aggregation")
-
-# COMMAND ----------
-
-spark.table("directors_movie_aggregation_tmp_vw") \
-    .writeStream \
-    .trigger(availableNow = True) \
-    .outputMode('complete') \
-    .option("checkpointLocation", "/mnt/adobeadls/dwanalytics/checkpoint/directors_movie_aggregation") \
-    .table("dw_analytics.directors_movie_aggregation") \
-    .awaitTermination()
 
 # COMMAND ----------
 
@@ -71,10 +61,9 @@ spark.table("directors_movie_aggregation_tmp_vw") \
 
 # COMMAND ----------
 
-# MAGIC %python
-# MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
+dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
 
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC DROP TABLE dw_analytics.directors_movie_aggregation; 
+# MAGIC DROP TABLE dw_analytics.directors_movie_aggregation;
