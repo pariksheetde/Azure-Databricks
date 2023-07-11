@@ -76,4 +76,4 @@ SELECT * FROM dw_analytics.books;
 
 -- COMMAND ----------
 
-DROP TABLE dw_analytics.books;
+DROP TABLE IF EXISTS dw_analytics.books;

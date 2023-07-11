@@ -68,4 +68,4 @@ dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC DROP TABLE dw_analytics.books_aggregation;
+# MAGIC DROP TABLE IF EXISTS dw_analytics.books_aggregation;

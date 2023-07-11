@@ -50,4 +50,4 @@ SELECT * FROM dw_analytics.directors_movies ORDER BY 1;
 
 -- COMMAND ----------
 
-DROP TABLE dw_analytics.directors_movies;
+DROP TABLE IF EXISTS dw_analytics.directors_movies;

@@ -66,4 +66,4 @@ dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC DROP TABLE dw_analytics.directors_movie_aggregation;
+# MAGIC DROP TABLE IF EXISTS dw_analytics.directors_movie_aggregation;
