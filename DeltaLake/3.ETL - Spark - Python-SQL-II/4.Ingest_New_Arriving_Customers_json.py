@@ -4,50 +4,44 @@
 
 # COMMAND ----------
 
-spark.readStream \
-    .format('cloudFiles') \
-    .option('cloudFiles.format', 'json') \
-    .option('cloudFiles.schemaLocation', '/mnt/adobeadls/dwanalytics/customers/checkpoint/customers_tmp') \
-    .load('/mnt/adobeadls/dwanalytics/customers/customers-json-new/*') \
-    .writeStream \
-    .option('checkpointLocation', '/mnt/adobeadls/dwanalytics/customers/checkpoint/customers_tmp') \
-    .table('dw_analytics.customers_staging')
+# spark.readStream \
+#     .format('cloudFiles') \
+#     .option('cloudFiles.format', 'json') \
+#     .option('cloudFiles.schemaLocation', '/mnt/adobeadls/dwanalytics/customers/checkpoint/customers_tmp') \
+#     .load('/mnt/adobeadls/dwanalytics/customers/customers-json-new/*') \
+#     .writeStream \
+#     .option('checkpointLocation', '/mnt/adobeadls/dwanalytics/customers/checkpoint/customers_tmp') \
+#     .table('dw_analytics.customers_staging')
 
 
 # COMMAND ----------
 
+# %sql
+# SELECT count(*) AS CNT FROM dw_analytics.customers;
+
+# COMMAND ----------
+
+# %sql
+# CREATE OR REPLACE TEMP VIEW customers_tmp_vw
+# AS
+# SELECT * FROM dw_analytics.customers;
+
+# COMMAND ----------
+
 # MAGIC %sql
-# MAGIC CREATE OR REPLACE TEMP VIEW customers_tmp_vw
-# MAGIC AS
-# MAGIC SELECT * FROM dw_analytics.customers_staging;
+# MAGIC CREATE OR REPLACE TEMP VIEW customers_temp_vw
+# MAGIC AS SELECT * FROM json.`/mnt/adobeadls/dwanalytics/customers/customers-json-new/`;
 
 # COMMAND ----------
 
 # MAGIC %sql
 # MAGIC MERGE INTO dw_analytics.customers tgt
-# MAGIC USING customers_tmp_vw src
+# MAGIC USING customers_temp_vw src
 # MAGIC ON tgt.customer_id = src.customer_id
 # MAGIC WHEN MATCHED AND tgt.email IS NULL AND src.email IS NOT NULL THEN
 # MAGIC   UPDATE SET tgt.email = src.email, tgt.updated = src.updated
 # MAGIC WHEN NOT MATCHED THEN
 # MAGIC   INSERT *;
-
-# COMMAND ----------
-
-# %sql
-# CREATE OR REPLACE TEMP VIEW customers_temp_vw
-# AS SELECT * FROM json.`/mnt/adobeadls/dwanalytics/customers/customers-json-new/`;
-
-# COMMAND ----------
-
-# %sql
-# MERGE INTO dw_analytics.customers tgt
-# USING customers_temp_vw src
-# ON tgt.customer_id = src.customer_id
-# WHEN MATCHED AND tgt.email IS NULL AND src.email IS NOT NULL THEN
-#   UPDATE SET tgt.email = src.email, tgt.updated = src.updated
-# WHEN NOT MATCHED THEN
-#   INSERT *;
 
 # COMMAND ----------
 

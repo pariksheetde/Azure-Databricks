@@ -15,52 +15,60 @@ spark.readStream \
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC SELECT * FROM customers_streaming_temp_vw;
+# DO NOT DELETE THIS CELL
+# %sql
+# SELECT * FROM customers_streaming_temp_vw;
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC SELECT 
-# MAGIC count(*) as population
-# MAGIC ,c.profile:gender as gender
-# MAGIC ,c.profile:address:country as country
-# MAGIC FROM customers_streaming_temp_vw c
-# MAGIC WHERE customer_id IS NOT NULL
-# MAGIC GROUP BY gender, country
-# MAGIC HAVING population > 50
-# MAGIC ORDER BY population DESC, country ASC;
+# DO NOT DELETE THIS CELL
+# %sql
+# SELECT 
+# count(*) as population
+# ,c.profile:gender as gender
+# ,c.profile:address:country as country
+# FROM customers_streaming_temp_vw c
+# WHERE customer_id IS NOT NULL
+# GROUP BY gender, country
+# HAVING population > 50
+# ORDER BY population DESC, country ASC;
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC CREATE OR REPLACE TEMP VIEW customers_aggregation_tmp_vw
-# MAGIC AS
-# MAGIC (
-# MAGIC SELECT 
-# MAGIC count(*) as population
-# MAGIC ,c.profile:gender as gender
-# MAGIC ,c.profile:address:country as country
-# MAGIC FROM customers_streaming_temp_vw c
-# MAGIC WHERE customer_id IS NOT NULL
-# MAGIC GROUP BY gender, country
-# MAGIC HAVING population > 50
-# MAGIC ORDER BY population DESC, country ASC
-# MAGIC );
+# DO NOT DELETE THIS CELL
+# %sql
+# CREATE OR REPLACE TEMP VIEW customers_aggregation_tmp_vw
+# AS
+# (
+# SELECT 
+# count(*) as population
+# ,c.profile:gender as gender
+# ,c.profile:address:country as country
+# FROM customers_streaming_temp_vw c
+# WHERE customer_id IS NOT NULL
+# GROUP BY gender, country
+# HAVING population > 50
+# ORDER BY population DESC, country ASC
+# );
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC SELECT * FROM customers_aggregation_tmp_vw;
+# DO NOT DELETE THIS CELL
+# %sql
+# SELECT * FROM customers_aggregation_tmp_vw;
 
 # COMMAND ----------
+
+dbutils.fs.rm("/mnt/adobeadls/dwanalytics/customers/checkpoint/customers_aggregation", True);
 
 spark.table("customers_aggregation_tmp_vw") \
     .writeStream \
-    .trigger(processingTime = '1 seconds') \
+    .trigger(availableNow = True) \
     .outputMode('complete') \
+    .option('skipChangeCommits', 'true') \
     .option("checkpointLocation", "/mnt/adobeadls/dwanalytics/customers/checkpoint/customers_aggregation") \
-    .table("dw_analytics.customers_aggregation")
+    .table("dw_analytics.customers_aggregation") \
+    .awaitTermination()
 
 # COMMAND ----------
 
