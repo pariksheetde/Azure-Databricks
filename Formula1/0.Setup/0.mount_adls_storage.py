@@ -1,9 +1,9 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC #### ENTER THE BELOW DETAILS
-# MAGIC ## client_id
-# MAGIC ##### secret_id
-# MAGIC ##### tenant_id
+# MAGIC ##### ENTER THE BELOW DETAILS
+# MAGIC 1. client_id
+# MAGIC 2. secret_id
+# MAGIC 3. tenant_id
 
 # COMMAND ----------
 
@@ -46,7 +46,7 @@ mount_adls("raw")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### mount processed container
+# MAGIC #### Mount processed container
 
 # COMMAND ----------
 
@@ -55,7 +55,7 @@ mount_adls("processed")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### mount etl container
+# MAGIC #### Mount etl container
 
 # COMMAND ----------
 
@@ -73,7 +73,7 @@ mount_adls("presentation")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### mount dwanalytics container
+# MAGIC #### Mount dwanalytics container
 
 # COMMAND ----------
 
@@ -82,7 +82,7 @@ mount_adls("dwanalytics")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### mount presentation container
+# MAGIC #### Mount presentation container
 
 # COMMAND ----------
 
@@ -91,7 +91,7 @@ mount_adls("incremental")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### mount deltalake container
+# MAGIC #### Mount deltalake container
 
 # COMMAND ----------
 
