@@ -37,7 +37,7 @@ def mount_adls(container_name):
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### Mount raw container
+# MAGIC #### Mount Raw Container
 
 # COMMAND ----------
 
@@ -46,7 +46,7 @@ mount_adls("raw")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### Mount processed container
+# MAGIC #### Mount Processed Container
 
 # COMMAND ----------
 
@@ -55,7 +55,7 @@ mount_adls("processed")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### Mount etl container
+# MAGIC #### Mount Etl Container
 
 # COMMAND ----------
 
@@ -64,7 +64,7 @@ mount_adls("etl")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### mount presentation container
+# MAGIC #### mount Presentation Container
 
 # COMMAND ----------
 
@@ -73,7 +73,7 @@ mount_adls("presentation")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### Mount dwanalytics container
+# MAGIC #### Mount Dwanalytics Container
 
 # COMMAND ----------
 
@@ -82,7 +82,7 @@ mount_adls("dwanalytics")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### Mount presentation container
+# MAGIC #### Mount Presentation Container
 
 # COMMAND ----------
 
@@ -91,7 +91,7 @@ mount_adls("incremental")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### Mount deltalake container
+# MAGIC #### Mount Deltalake Container
 
 # COMMAND ----------
 
