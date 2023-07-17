@@ -15,17 +15,21 @@ spark.readStream \
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC SELECT * FROM directors_movies_streaming_temp_vw;
+# DO NOT DELETE THIS CELL
+
+# %sql
+# SELECT * FROM directors_movies_streaming_temp_vw;
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC SELECT
-# MAGIC count(moviename) as cnt,
-# MAGIC f_name||' '||l_name as directors
-# MAGIC FROM directors_movies_streaming_temp_vw
-# MAGIC GROUP BY directors;
+# DO NOT DELETE THIS CELL
+
+# %sql
+# SELECT
+# count(moviename) as cnt,
+# f_name||' '||l_name as directors
+# FROM directors_movies_streaming_temp_vw
+# GROUP BY directors;
 
 # COMMAND ----------
 
@@ -42,17 +46,22 @@ spark.readStream \
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC SELECT * FROM directors_movie_aggregation_tmp_vw;
+# DO NOT DELETE THIS CELL
+
+# %sql
+# SELECT * FROM directors_movie_aggregation_tmp_vw;
 
 # COMMAND ----------
 
+dbutils.fs.rm("/mnt/adobeadls/dwanalytics/movies/checkpoint/directors_movie_aggregation", True);
+
 spark.table("directors_movie_aggregation_tmp_vw") \
     .writeStream \
-    .trigger(processingTime = '1 seconds') \
+    .trigger(availableNow = True) \
     .outputMode('complete') \
     .option("checkpointLocation", "/mnt/adobeadls/dwanalytics/movies/checkpoint/directors_movie_aggregation") \
-    .table("dw_analytics.directors_movie_aggregation")
+    .table("dw_analytics.directors_movie_aggregation") \
+    .awaitTermination()
 
 # COMMAND ----------
 

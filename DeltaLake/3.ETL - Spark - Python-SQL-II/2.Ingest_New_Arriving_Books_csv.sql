@@ -42,15 +42,3 @@ SELECT count(*) AS CNT FROM dw_analytics.books;
 
 -- MAGIC %python
 -- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
-
--- COMMAND ----------
-
--- MAGIC %python
--- MAGIC spark.read \
--- MAGIC     .table("dw_analytics.books") \
--- MAGIC     .write \
--- MAGIC     .mode("overwrite") \
--- MAGIC     .format("delta") \
--- MAGIC     .option("header", "true") \
--- MAGIC     .option("delimiter", ";") \
--- MAGIC     .save("/mnt/adobeadls/processed/books/")

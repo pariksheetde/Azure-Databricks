@@ -1,6 +1,6 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC #### QUERY books table from Database
+# MAGIC #### QUERY BOOKS Table From DW_ANALYTICS
 
 # COMMAND ----------
 
@@ -15,18 +15,22 @@ spark.readStream \
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC SELECT * FROM books_streaming_temp_vw;
+# DO NOT DELETE THIS CELL
+
+# %sql
+# SELECT * FROM books_streaming_temp_vw;
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC SELECT
-# MAGIC sum(price) as total_cost,
-# MAGIC count(category) as cnt_genre,
-# MAGIC category
-# MAGIC FROM books_streaming_temp_vw
-# MAGIC GROUP BY category;
+# DO NOT DELETE THIS CELL
+
+# %sql
+# SELECT
+# sum(price) as total_cost,
+# count(category) as cnt_genre,
+# category
+# FROM books_streaming_temp_vw
+# GROUP BY category;
 
 # COMMAND ----------
 
@@ -44,17 +48,23 @@ spark.readStream \
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC SELECT * FROM books_aggregation_tmp_vw;
+# DO NOT DELETE THIS CELL
+
+# %sql
+# SELECT * FROM books_aggregation_tmp_vw;
 
 # COMMAND ----------
 
+dbutils.fs.rm("/mnt/adobeadls/dwanalytics/books/checkpoint/books_aggregation", True);
+
 spark.table("books_aggregation_tmp_vw") \
     .writeStream \
-    .trigger(processingTime = '1 seconds') \
+    .trigger(availableNow = True) \
     .outputMode('complete') \
+    .option('skipChangeCommits', 'true') \
     .option("checkpointLocation", "/mnt/adobeadls/dwanalytics/books/checkpoint/books_aggregation") \
-    .table("dw_analytics.books_aggregation")
+    .table("dw_analytics.books_aggregation") \
+    .awaitTermination()
 
 # COMMAND ----------
 

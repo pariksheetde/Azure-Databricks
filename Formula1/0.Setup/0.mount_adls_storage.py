@@ -23,7 +23,7 @@ configs = {"fs.azure.account.auth.type": "OAuth",
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### create a UDF to mount the container in adls
+# MAGIC #### Create a UDF to mount the container in adls
 
 # COMMAND ----------
 
@@ -37,7 +37,7 @@ def mount_adls(container_name):
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### mount raw container
+# MAGIC #### Mount raw container
 
 # COMMAND ----------
 
