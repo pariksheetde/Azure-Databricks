@@ -1,11 +1,11 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC #### QUERY BOOKS Table From DW_ANALYTICS
+# MAGIC #### SPARK STREAMING TO READ FROM dw_analytics.books Table And Load The Data To Temp View
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC SELECT * FROM dw_analytics.books;
+# MAGIC %python
+# MAGIC dbutils.fs.mkdirs("mnt/adobeadls/dwanalytics/books/books-csv-new/")
 
 # COMMAND ----------
 
@@ -15,14 +15,19 @@ spark.readStream \
 
 # COMMAND ----------
 
-# DO NOT DELETE THIS CELL
+# DO NOT DELETE THE BELOW CELL
+
+# COMMAND ----------
 
 # %sql
 # SELECT * FROM books_streaming_temp_vw;
 
 # COMMAND ----------
 
-# DO NOT DELETE THIS CELL
+# DO NOT DELETE THE BELOW CELL
+
+# COMMAND ----------
+
 
 # %sql
 # SELECT
@@ -48,20 +53,34 @@ spark.readStream \
 
 # COMMAND ----------
 
-# DO NOT DELETE THIS CELL
+# DO NOT DELETE THE BELOW CELL
+
+# COMMAND ----------
 
 # %sql
 # SELECT * FROM books_aggregation_tmp_vw;
 
 # COMMAND ----------
 
-dbutils.fs.rm("/mnt/adobeadls/dwanalytics/books/checkpoint/books_aggregation", True);
+# DO NOT DELETE THIS CELL
+
+# %sql
+# SELECT * FROM books_aggregation_tmp_vw;
+# .option('skipChangeCommits', 'true') \
+# .trigger(availableNow = True) \
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC #### For Aggreagtion, must use complete mode instead of append
+
+# COMMAND ----------
 
 spark.table("books_aggregation_tmp_vw") \
     .writeStream \
     .trigger(availableNow = True) \
     .outputMode('complete') \
-    .option('skipChangeCommits', 'true') \
+    .option('skipChangeCommits','true') \
     .option("checkpointLocation", "/mnt/adobeadls/dwanalytics/books/checkpoint/books_aggregation") \
     .table("dw_analytics.books_aggregation") \
     .awaitTermination()

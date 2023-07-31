@@ -42,23 +42,7 @@ DESC EXTENDED dw_analytics.books;
 
 -- COMMAND ----------
 
-CREATE OR REPLACE TEMP VIEW books_temp_vw
-(
-    book_id STRING,
-    title STRING,
-    author STRING,
-    category STRING,
-    price DOUBLE
-)
-USING CSV
-OPTIONS
-(
-  path = "/mnt/adobeadls/dwanalytics/books/processed/*.csv",
-  header = "true",
-  sep = ";"
-);
-
-SELECT * FROM books_temp_vw;
+SELECT * FROM dw_analytics.books ORDER BY 1;
 
 -- COMMAND ----------
 
