@@ -1,10 +1,15 @@
 -- Databricks notebook source
 -- MAGIC %md
--- MAGIC #### READ THE MOVIES DATA FROM ADLS (Azure Data Lake Storage)
+-- MAGIC #### READ THE MOVIES DATA FROM ADLS (Azure Data Lake Storage) THAT HAS ALREADY BEEN PROCESSED BY UPSTREAM TRANSFORMATION
 
 -- COMMAND ----------
 
 SELECT * FROM csv.`/mnt/adobeadls/dwanalytics/movies/processed/*.csv`
+
+-- COMMAND ----------
+
+-- MAGIC %md
+-- MAGIC #### CREATE A TEMP VIEW TO LAOD THE DATA FROM ADLS
 
 -- COMMAND ----------
 
@@ -28,6 +33,11 @@ SELECT * FROM directors_movies_staging_temp_vw;
 -- COMMAND ----------
 
 SELECT COUNT(*) AS cnt FROM directors_movies_staging_temp_vw;
+
+-- COMMAND ----------
+
+-- MAGIC %md
+-- MAGIC #### LOAD THE DATA INTO TABLE FROM TEMP VIEW
 
 -- COMMAND ----------
 

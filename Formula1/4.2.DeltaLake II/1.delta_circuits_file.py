@@ -4,12 +4,12 @@
 
 # COMMAND ----------
 
-# MAGIC %run "../Includes/config"
+# MAGIC %run "../9.Includes/config"
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Pass the parameter for the file name
+# MAGIC #### Pass the parameter for the file name
 
 # COMMAND ----------
 
