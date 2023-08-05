@@ -7,7 +7,7 @@
 
 # COMMAND ----------
 
-# MAGIC %run "../Includes/config"
+# MAGIC %run "../9.Includes/config"
 
 # COMMAND ----------
 
@@ -21,7 +21,7 @@ races_results_df.createOrReplaceGlobalTempView("Race_Results_Global_Temp_VW")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Access views from SQL
+# MAGIC #### ACCESS VIEWS FROM SQL
 
 # COMMAND ----------
 
@@ -36,7 +36,7 @@ races_results_df.createOrReplaceGlobalTempView("Race_Results_Global_Temp_VW")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Access views from Python
+# MAGIC #### ACCESS VIEWS FROM PYTHON
 
 # COMMAND ----------
 
@@ -55,7 +55,7 @@ dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### Temp View can'nt be executed from other notebook
+# MAGIC #### TEMP VIEW CAN'NT BE EXECUTED FROM OTHER NOTEBOOK
 
 # COMMAND ----------
 

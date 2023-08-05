@@ -1,6 +1,6 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC ##### ENTER THE BELOW DETAILS
+# MAGIC #### ENTER THE BELOW DETAILS
 # MAGIC 1. client_id
 # MAGIC 2. secret_id
 # MAGIC 3. tenant_id
