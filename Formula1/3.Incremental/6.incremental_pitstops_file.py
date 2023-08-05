@@ -1,10 +1,10 @@
 # Databricks notebook source
-# MAGIC %run "../Includes/config"
+# MAGIC %run "../9.Includes/config"
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Pass the parameter for the file name
+# MAGIC #### PASS THE PARAMETER FOR THE FILE NAME
 
 # COMMAND ----------
 
@@ -15,7 +15,7 @@ print(v_data_source)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Pass the parameter for the file date
+# MAGIC #### PASS THE PARAMETER FOR THE FILE DATE
 
 # COMMAND ----------
 
@@ -26,7 +26,7 @@ print(v_file_date)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Define schema for pit_stops.json file
+# MAGIC #### DEFINE SCHEMA FOR pit_stops.json FILE
 
 # COMMAND ----------
 
@@ -46,7 +46,7 @@ pit_stops_schema = StructType(fields =
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Ingest results.json file
+# MAGIC #### INGEST results.json FILE
 
 # COMMAND ----------
 
@@ -64,11 +64,11 @@ print(raw_path)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Rename the columns as required
+# MAGIC #### RENAME THE COLUMNS AS REQUIRED
 
 # COMMAND ----------
 
-# MAGIC %run "../Includes/functions"
+# MAGIC %run "../9.Includes/functions"
 
 # COMMAND ----------
 
@@ -86,7 +86,7 @@ print(f"Number of records {pit_stops_renamed_df.count()}")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Write data to DataLake as parquet
+# MAGIC #### WRITE DATA TO THE DATALAKE AS PARQUET FILE
 
 # COMMAND ----------
 
@@ -95,7 +95,7 @@ print(f"Number of records {pit_stops_renamed_df.count()}")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Read the data we wrote to DataLake back into a DataFrame to prove the write worked
+# MAGIC #### READ THE DATA TO DATALAKE BACK TO THE DATAFRAME TO CHECK THE WRITE WORKED
 
 # COMMAND ----------
 
@@ -118,7 +118,7 @@ spark.conf.set("spark.sql.sources.partitionOverwriteMode", "dynamic")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Incremental Load using insertInto()
+# MAGIC #### INCREMENTAL LOAD USING insertInto()
 
 # COMMAND ----------
 

@@ -50,18 +50,16 @@ spark.readStream \
 
 # %sql
 # SELECT * FROM directors_movie_aggregation_tmp_vw;
+# dbutils.fs.rm("/mnt/adobeadls/dwanalytics/movies/checkpoint/directors_movie_aggregation", True);
 
 # COMMAND ----------
 
-dbutils.fs.rm("/mnt/adobeadls/dwanalytics/movies/checkpoint/directors_movie_aggregation", True);
-
 spark.table("directors_movie_aggregation_tmp_vw") \
     .writeStream \
-    .trigger(availableNow = True) \
+    .trigger(processingTime = '10 seconds') \
     .outputMode('complete') \
     .option("checkpointLocation", "/mnt/adobeadls/dwanalytics/movies/checkpoint/directors_movie_aggregation") \
-    .table("dw_analytics.directors_movie_aggregation") \
-    .awaitTermination()
+    .table("dw_analytics.directors_movie_aggregation")
 
 # COMMAND ----------
 

@@ -4,15 +4,20 @@
 
 # COMMAND ----------
 
-# spark.readStream \
-#     .format('cloudFiles') \
-#     .option('cloudFiles.format', 'json') \
-#     .option('cloudFiles.schemaLocation', '/mnt/adobeadls/dwanalytics/customers/checkpoint/customers_tmp') \
-#     .load('/mnt/adobeadls/dwanalytics/customers/customers-json-new/*') \
-#     .writeStream \
-#     .option('checkpointLocation', '/mnt/adobeadls/dwanalytics/customers/checkpoint/customers_tmp') \
-#     .table('dw_analytics.customers_staging')
+spark.readStream \
+    .format('cloudFiles') \
+    .option('cloudFiles.format', 'json') \
+    .option('cloudFiles.schemaLocation', '/mnt/adobeadls/dwanalytics/customers/checkpoint/customers_tmp') \
+    .load('/mnt/adobeadls/dwanalytics/customers/customers-json-new/*') \
+    .writeStream \
+    .option('checkpointLocation', '/mnt/adobeadls/dwanalytics/customers/checkpoint/customers_tmp') \
+    .table('dw_analytics.customers_staging')
 
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC SELECT count(*) AS CNT FROM dw_analytics.customers_staging;
 
 # COMMAND ----------
 
