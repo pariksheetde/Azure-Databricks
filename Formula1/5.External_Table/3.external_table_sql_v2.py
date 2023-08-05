@@ -1,5 +1,5 @@
 # Databricks notebook source
-# MAGIC %run "../Includes/config"
+# MAGIC %run "../9.Includes/config"
 
 # COMMAND ----------
 
@@ -64,7 +64,7 @@
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### Validate that correct data in JSON format has been written to external table
+# MAGIC #### VALIDATE THAT CORRECT DATA IN JSON FORMAT HAS BEEN WRITTEN TO EXTERNAL TABLE
 
 # COMMAND ----------
 

@@ -1,10 +1,10 @@
 # Databricks notebook source
-# MAGIC %run "../Includes/config"
+# MAGIC %run "../9.Includes/config"
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ### Read circuits.parquet from DataLake (processed data)
+# MAGIC #### READ circuits.parquet FROM DATALAKE (PROCESSED DATA)
 
 # COMMAND ----------
 
@@ -18,7 +18,7 @@ print(f"Number of Records Read {dl_circuits_df.count()}")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ### Read races.parquet from DataLake (processed data)
+# MAGIC #### READ races.parquet FROM DATALAKE (PROCESSED DATA)
 
 # COMMAND ----------
 

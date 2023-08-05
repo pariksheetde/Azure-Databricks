@@ -1,14 +1,14 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC ##### 1.WRITE DATA TO DELTA LAKE (Managed Table)
-# MAGIC ##### 2.WRITE DATA TO DELTA LAKE (External table)
-# MAGIC ##### 3.READ DATA FROM DELTA LAKE (Table)
-# MAGIC ##### 4.READ DATA FROM DELTA LAKE (File)
+# MAGIC #### 1.WRITE DATA TO DELTA LAKE (Managed Table)
+# MAGIC #### 2.WRITE DATA TO DELTA LAKE (External table)
+# MAGIC #### 3.READ DATA FROM DELTA LAKE (Table)
+# MAGIC #### 4.READ DATA FROM DELTA LAKE (File)
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### SELECT 1st Day's Data
+# MAGIC #### SELECT 1st DAY'S DATA
 
 # COMMAND ----------
 
@@ -35,7 +35,7 @@ drivers_day1_df.createOrReplaceTempView("drivers_day1")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### SELECT 2nd Day's Data
+# MAGIC #### SELECT 2nd DAY'S DATA
 
 # COMMAND ----------
 
@@ -62,7 +62,7 @@ drivers_day2_df.createOrReplaceTempView("drivers_day2")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### SEELCT 3rd Day's Data
+# MAGIC #### SELECT 3rd DAY'S DATA
 
 # COMMAND ----------
 
@@ -95,7 +95,7 @@ display(drivers_day3_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### DAY 1
+# MAGIC #### DAY 1
 
 # COMMAND ----------
 

@@ -9,7 +9,7 @@
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Pass the parameter for the file name
+# MAGIC #### PASS THE PARAMETER FOR THE FILE NAME
 
 # COMMAND ----------
 
@@ -19,7 +19,7 @@ v_data_source = dbutils.widgets.get("p_data_source")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Pass the parameter for the file date
+# MAGIC #### PASS THE PARAMETER FOR THE FILE DATE
 
 # COMMAND ----------
 

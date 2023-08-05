@@ -1,10 +1,10 @@
 # Databricks notebook source
-# MAGIC %run "../Includes/config" 
+# MAGIC %run "../9.Includes/config" 
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Pass the parameter for the file name
+# MAGIC #### PASS THE PARAMETER FOR THE FILE NAME
 
 # COMMAND ----------
 
@@ -14,7 +14,7 @@ v_data_source = dbutils.widgets.get("p_data_source")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Define schema for constructors.json file
+# MAGIC #### DEFINE SCHEMA FOR constructors.json FILE
 
 # COMMAND ----------
 
@@ -25,7 +25,7 @@ constructor_schema = "constructorId INTEGER, constructorRef STRING, name STRING,
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Ingest constructors.json file
+# MAGIC #### INGEST constructors.json FILE
 
 # COMMAND ----------
 
@@ -41,11 +41,11 @@ print(raw_path)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Rename the columns as required
+# MAGIC #### RENAME THE COLUMNS AS REQUIRED
 
 # COMMAND ----------
 
-# MAGIC %run "../Includes/functions"
+# MAGIC %run "../9.Includes/functions"
 
 # COMMAND ----------
 
@@ -61,7 +61,7 @@ display(rename_constructors_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Replicate the circuits data inside Processed DB
+# MAGIC #### REPLICATE THE CIRCUITS DATA INSIDE PROCESSED DB
 
 # COMMAND ----------
 

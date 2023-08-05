@@ -1,10 +1,10 @@
 # Databricks notebook source
-# MAGIC %run "../Includes/config"
+# MAGIC %run "../9.Includes/config"
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ####Pass the parameter for the file name
+# MAGIC #### PASS THE PARAMETER FOR THE FILE NAME
 
 # COMMAND ----------
 
@@ -14,7 +14,7 @@ v_data_source = dbutils.widgets.get("p_data_source")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Define schema for lap_times directory
+# MAGIC #### DEFINE SCHEMA FOR LAP_TIMES DIRECTORY
 
 # COMMAND ----------
 
@@ -33,7 +33,7 @@ laps_schema = StructType(fields =
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Ingest lap_times directory
+# MAGIC #### INGEST LAP_TIMES DIRECTORY
 
 # COMMAND ----------
 
@@ -50,11 +50,11 @@ print(raw_path)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Rename the columns as required
+# MAGIC #### RENAME THE COLUMNS AS REQUIRED
 
 # COMMAND ----------
 
-# MAGIC %run "../Includes/functions"
+# MAGIC %run "../9.Includes/functions"
 
 # COMMAND ----------
 
@@ -71,7 +71,7 @@ display(lap_times_renamed_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Replicate the lap_times data inside Processed DB
+# MAGIC #### REPLICATE THE LAP_TIMES DATA INSIDE PROCESSED DB
 
 # COMMAND ----------
 

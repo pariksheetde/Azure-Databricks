@@ -1,5 +1,5 @@
 # Databricks notebook source
-# MAGIC %run "../Includes/config"
+# MAGIC %run "../9.Includes/config"
 
 # COMMAND ----------
 
@@ -10,7 +10,7 @@ display(race_results_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### Count of Races
+# MAGIC #### COUNT OF RACES
 
 # COMMAND ----------
 
@@ -21,7 +21,7 @@ display(count_race_name_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### Number of races, points by Lewis Hamilton
+# MAGIC #### NUMBER OF RACES, POINTS BY Lewis Hamilton
 
 # COMMAND ----------
 
@@ -36,7 +36,7 @@ display(agg_Lewis_Hamilton_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### Number of races, points by all drivers
+# MAGIC #### NUMBER OF RACES, POINTS BY ALL DRIVERS
 
 # COMMAND ----------
 
