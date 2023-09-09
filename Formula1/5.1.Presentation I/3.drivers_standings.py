@@ -1,5 +1,5 @@
 # Databricks notebook source
-# MAGIC %run "../Includes/config"
+# MAGIC %run "../9.Includes/config"
 
 # COMMAND ----------
 
@@ -9,7 +9,7 @@ display(race_results_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Drivers's Standing
+# MAGIC #### DRIVERS'S STANDING
 
 # COMMAND ----------
 
@@ -48,7 +48,7 @@ print(f"Number of Rows Effected {drivers_rank_spec_df.count()}")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Save the data in the Presentation DB
+# MAGIC #### SAVE THE DATA IN THE PRESENTATION DB
 
 # COMMAND ----------
 

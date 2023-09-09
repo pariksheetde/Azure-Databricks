@@ -1,9 +1,9 @@
 # Databricks notebook source
 # MAGIC %md
 # MAGIC #### ENTER THE BELOW DETAILS
-# MAGIC ## client_id
-# MAGIC ##### secret_id
-# MAGIC ##### tenant_id
+# MAGIC 1. client_id
+# MAGIC 2. secret_id
+# MAGIC 3. tenant_id
 
 # COMMAND ----------
 
@@ -23,7 +23,7 @@ configs = {"fs.azure.account.auth.type": "OAuth",
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### create a UDF to mount the container in adls
+# MAGIC #### Create a UDF to mount the container in adls
 
 # COMMAND ----------
 
@@ -37,7 +37,7 @@ def mount_adls(container_name):
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### mount raw container
+# MAGIC #### Mount Raw Container
 
 # COMMAND ----------
 
@@ -46,7 +46,7 @@ mount_adls("raw")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### mount processed container
+# MAGIC #### Mount Processed Container
 
 # COMMAND ----------
 
@@ -55,7 +55,7 @@ mount_adls("processed")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### mount etl container
+# MAGIC #### Mount Etl Container
 
 # COMMAND ----------
 
@@ -64,7 +64,7 @@ mount_adls("etl")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### mount presentation container
+# MAGIC #### mount Presentation Container
 
 # COMMAND ----------
 
@@ -73,7 +73,7 @@ mount_adls("presentation")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### mount dwanalytics container
+# MAGIC #### Mount Dwanalytics Container
 
 # COMMAND ----------
 
@@ -82,7 +82,7 @@ mount_adls("dwanalytics")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### mount presentation container
+# MAGIC #### Mount Presentation Container
 
 # COMMAND ----------
 
@@ -91,7 +91,7 @@ mount_adls("incremental")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### mount deltalake container
+# MAGIC #### Mount Deltalake Container
 
 # COMMAND ----------
 

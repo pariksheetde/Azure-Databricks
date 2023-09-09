@@ -105,11 +105,34 @@
 # COMMAND ----------
 
 # MAGIC %sql
+# MAGIC SELECT * FROM dw_analytics.orders LIMIT 10;
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC CREATE OR REPLACE VIEW dw_analytics.books_ordered
+# MAGIC AS
 # MAGIC SELECT * FROM
 # MAGIC (
-# MAGIC SELECT *, explode(books) AS book FROM delta.orders) o
-# MAGIC JOIN delta.books_staging b
+# MAGIC SELECT *, explode(books) AS book FROM dw_analytics.orders) o
+# MAGIC JOIN dw_analytics.books b
 # MAGIC ON o.book.book_id = b.book_id;
+# MAGIC
+# MAGIC SELECT * FROM dw_analytics.books_ordered;
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC SELECT * FROM
+# MAGIC (
+# MAGIC   SELECT
+# MAGIC     customer_id
+# MAGIC     ,book.book_id as book_id
+# MAGIC     ,book.quantity as quantity
+# MAGIC     FROM dw_analytics.books_ordered
+# MAGIC ) PIVOT(
+# MAGIC   sum(quantity) FOR book_id IN ('B01', 'B02', 'B03', 'B04', 'B05', 'B06', 'B07', 'B08', 'B09', 'B10', 'B11', 'B12')
+# MAGIC )
 
 # COMMAND ----------
 

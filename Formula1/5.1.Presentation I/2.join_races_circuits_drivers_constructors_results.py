@@ -1,10 +1,10 @@
 # Databricks notebook source
-# MAGIC %run "../Includes/config"
+# MAGIC %run "../9.Includes/config"
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Read from Races DataSet
+# MAGIC #### READ FROM RACES DATASET
 
 # COMMAND ----------
 
@@ -19,7 +19,7 @@ print(f"Number of Records Read {races_df.count()}")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Read from Circuits DataSet
+# MAGIC #### READ FROM CIRCUITS DATASET
 
 # COMMAND ----------
 
@@ -33,7 +33,7 @@ print(f"Number of Records Read {circuit_df.count()}")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Read from Drivers DataSet
+# MAGIC #### READ FROM DRIVERS DATASET
 
 # COMMAND ----------
 
@@ -49,7 +49,7 @@ print(f"Number of Records Read {drivers_df.count()}")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Read from Constructors DataSet
+# MAGIC #### READ FROM CONSTRUCTORS DATASET
 
 # COMMAND ----------
 
@@ -64,7 +64,7 @@ print(f"Number of Records Read {constructors_df.count()}")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Read from Results DataSet
+# MAGIC #### READ FROM RESULTS DATASET
 
 # COMMAND ----------
 
@@ -78,7 +78,7 @@ print(f"Number of Records Read {results_df.count()}")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Join Between Races & Circuits
+# MAGIC #### JOIN BETWEEN RACES & CIRCUITS
 
 # COMMAND ----------
 
@@ -103,7 +103,7 @@ display(join_race_results_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Save the data in the Presentation DataLake
+# MAGIC #### SAVE THE DATA IN THE PRESENTATION DATALAKE
 
 # COMMAND ----------
 
@@ -112,7 +112,7 @@ join_race_results_df.write.mode("overwrite").parquet(f"{presentation_path}/race_
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Save the data in the Presentation DB
+# MAGIC #### SAVE THE DATA IN THE PRESENTATION DB
 
 # COMMAND ----------
 

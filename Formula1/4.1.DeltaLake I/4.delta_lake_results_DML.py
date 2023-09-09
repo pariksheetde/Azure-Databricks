@@ -5,7 +5,7 @@
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Update Delta Table (f1_delta.results_managed)
+# MAGIC #### UPDATE DELTA TABLE (f1_delta.results_managed)
 
 # COMMAND ----------
 

@@ -1,15 +1,15 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC #####Define schema for circuits.csv file
+# MAGIC #### DEFINE SCHEMA FOR circuits.csv FILE
 
 # COMMAND ----------
 
-# MAGIC %run "../Includes/config"
+# MAGIC %run "../9.Includes/config"
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Pass the parameter for the file name
+# MAGIC #### PASS THE PARAMETER FOR THE FILE NAME
 
 # COMMAND ----------
 
@@ -19,7 +19,7 @@ v_data_source = dbutils.widgets.get("p_data_source")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Pass the parameter for the file date
+# MAGIC #### PASS THE PARAMETER FOR THE FILE DATE
 
 # COMMAND ----------
 
@@ -50,7 +50,7 @@ circuits_schema = StructType(fields =
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Ingest circuits.csv file
+# MAGIC #### INGEST circuits.csv FILE
 
 # COMMAND ----------
 
@@ -67,7 +67,7 @@ print(raw_path)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Select required columns
+# MAGIC #### SELECT ONLY THE REQUIRED COLUMNS
 
 # COMMAND ----------
 
@@ -83,7 +83,7 @@ display(sel_circuits_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Rename the columns as required
+# MAGIC #### RENAME THE COLUMNS AS REQUIRED
 
 # COMMAND ----------
 
@@ -98,11 +98,11 @@ display(rename_circuits_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Step 5. Add new columns
+# MAGIC #### ADD NEW COLUMNS
 
 # COMMAND ----------
 
-# MAGIC %run "../Includes/functions"
+# MAGIC %run "../9.Includes/functions"
 
 # COMMAND ----------
 
@@ -115,7 +115,7 @@ display(circuits_final_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Write data to DataLake as parquet
+# MAGIC #### WRITE DATA TO THE DATALAKE AS PARQUET FILE
 
 # COMMAND ----------
 
@@ -124,7 +124,7 @@ display(circuits_final_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Read the data we wrote to DataLake back into a DataFrame to prove the write worked
+# MAGIC #### READ THE DATA WE WROTE TO DATALAKE BACK INTO A DATAFRAME TO PROVE THE WRITE WORKED
 
 # COMMAND ----------
 
@@ -138,7 +138,7 @@ display(circuits_final_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Replicate the circuits data inside incremental DB
+# MAGIC #### REPLICATE THE CIRCUITS DATA INSIDE INCREMENTAL DB
 
 # COMMAND ----------
 

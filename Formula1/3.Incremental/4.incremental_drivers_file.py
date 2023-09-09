@@ -1,10 +1,10 @@
 # Databricks notebook source
-# MAGIC %run "../Includes/config"
+# MAGIC %run "../9.Includes/config"
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ### Pass the parameter for the file name
+# MAGIC #### PASS THE PARAMETER FOR THE FILE NAME
 
 # COMMAND ----------
 
@@ -14,7 +14,7 @@ v_file_name = dbutils.widgets.get("p_file_name")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ### Pass the parameter for the file date
+# MAGIC #### PASS THE PARAMETER FOR THE FILE DATE
 
 # COMMAND ----------
 
@@ -24,7 +24,7 @@ v_file_date = dbutils.widgets.get("p_file_date")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ###Step 1. Define schema for drivers.json file
+# MAGIC #### DEFINE SCHEMA FOR drivers.json FILE
 
 # COMMAND ----------
 
@@ -55,7 +55,7 @@ drivers_schema = StructType(fields =
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ### Step 2. Ingest constructors.json file
+# MAGIC #### INGEST constructors.json FILE
 
 # COMMAND ----------
 
@@ -70,7 +70,7 @@ print(f"Number of Records Read {drivers_df.count()}")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ### Step 3. Explode the columns as required
+# MAGIC #### EXPLODE THE COLUMNS AS REQUIRED
 
 # COMMAND ----------
 
@@ -92,7 +92,7 @@ display(explode_drivers_df)
 
 # COMMAND ----------
 
-# MAGIC %run "../Includes/functions"
+# MAGIC %run "../9.Includes/functions"
 
 # COMMAND ----------
 
@@ -114,7 +114,7 @@ display(drivers_final_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ### Step 4. Write data to datalake as parquet
+# MAGIC #### WRITE DATA TO DATALAKE AS PARQUET
 
 # COMMAND ----------
 
@@ -123,7 +123,7 @@ display(drivers_final_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ### Step 6. Read the data we wrote to DataLake back into a DataFrame to prove the write worked
+# MAGIC #### READ THE DATA WE WROTE TO DATALAKE BACK INTO A DATAFRAME TO PROVE THE WRITE WORKED
 
 # COMMAND ----------
 
@@ -137,7 +137,7 @@ display(drivers_final_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### STEP 7. Replicate the drivers data inside processed database
+# MAGIC #### REPLICATE THE DRIVERS DATA INSIDE PROCESSED DATABASE
 
 # COMMAND ----------
 

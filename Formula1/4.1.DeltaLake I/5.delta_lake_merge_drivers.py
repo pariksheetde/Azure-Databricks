@@ -1,10 +1,10 @@
 # Databricks notebook source
-# MAGIC %run "../includes/config"
+# MAGIC %run "../9.includes/config"
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### READ 1st day's driver data
+# MAGIC #### READ 1st DAY'S DRIVER DATA
 
 # COMMAND ----------
 
@@ -29,7 +29,7 @@ driver_day1_df.createOrReplaceTempView("driver_day1")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### READ 2nd day's driver data
+# MAGIC #### READ 2nd DAY'S DRIVER DATA
 
 # COMMAND ----------
 
@@ -54,7 +54,7 @@ driver_day2_df.createOrReplaceTempView("driver_day2")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### READ 3rd day's driver data
+# MAGIC #### READ 3rd DAY'S DRIVER DATA
 
 # COMMAND ----------
 
@@ -70,7 +70,7 @@ print(f"Number of Records {driver_day3_df.count()}")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Create Delta Table
+# MAGIC #### CREATE DELTA TABLE
 
 # COMMAND ----------
 
@@ -94,7 +94,7 @@ print(f"Number of Records {driver_day3_df.count()}")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### DAY 1 MERGE INTO TARGET TABLE
+# MAGIC #### DAY 1 MERGE INTO TARGET TABLE
 
 # COMMAND ----------
 
@@ -118,7 +118,7 @@ print(f"Number of Records {driver_day3_df.count()}")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### DAY 2 MERGE INTO TARGET TABLE
+# MAGIC #### DAY 2 MERGE INTO TARGET TABLE
 
 # COMMAND ----------
 
@@ -138,3 +138,7 @@ print(f"Number of Records {driver_day3_df.count()}")
 
 # MAGIC %sql
 # MAGIC SELECT * FROM f1_delta.driver_merge tgt;
+
+# COMMAND ----------
+
+dbutils.notebook.exit("EXECUTED SUCCESSFULLY")

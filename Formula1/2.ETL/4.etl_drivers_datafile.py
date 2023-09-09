@@ -1,10 +1,10 @@
 # Databricks notebook source
-# MAGIC %run "../Includes/config"
+# MAGIC %run "../9.Includes/config"
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Pass the parameter for the file name
+# MAGIC #### PASS THE PARAMETER FOR THE FILE NAME
 
 # COMMAND ----------
 
@@ -14,7 +14,7 @@ v_file_name = dbutils.widgets.get("p_file_name")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Define schema for drivers.json file
+# MAGIC #### DEFINE SCHEMA FOR DRIVERS.JSON FILE
 
 # COMMAND ----------
 
@@ -45,7 +45,7 @@ drivers_schema = StructType(fields =
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Ingest constructors.json file
+# MAGIC #### INGEST constructors.json FILE
 
 # COMMAND ----------
 
@@ -60,7 +60,7 @@ print(f"Number of Records Read {drivers_df.count()}")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Explode the columns to extract columns from json object as required
+# MAGIC #### EXPLODE THE COLUMNS TO EXTRACT COLUMNS FROM JSON OBJECT AS REQUIRED
 
 # COMMAND ----------
 
@@ -81,7 +81,7 @@ display(explode_drivers_df)
 
 # COMMAND ----------
 
-# MAGIC %run "../Includes/functions"
+# MAGIC %run "../9.Includes/functions"
 
 # COMMAND ----------
 
@@ -102,7 +102,7 @@ display(drivers_final_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Replicate the drivers data inside Processed DB
+# MAGIC #### REPLICATE THE DRIVERS DATA INSIDE PROCESSED DB
 
 # COMMAND ----------
 

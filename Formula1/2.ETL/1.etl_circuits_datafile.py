@@ -1,6 +1,6 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC ####Define schema for circuits.csv file
+# MAGIC #### DEFINE SCHEMA FOR circuits.csv FILE
 # MAGIC
 # MAGIC ####----------------------------------------------------------------------------------
 # MAGIC 1. Pass the parameter for the file name
@@ -14,16 +14,16 @@
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Define the paths for different environments
+# MAGIC #### DEFINE THE PATHS FOR DIFFERENT ENVIRONMENTS
 
 # COMMAND ----------
 
-# MAGIC %run "../Includes/config"
+# MAGIC %run "../9.Includes/config"
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Pass the parameter for the file name
+# MAGIC #### PASS THE PARAMETER FOR THE FILE NAME
 
 # COMMAND ----------
 
@@ -37,7 +37,7 @@ print(raw_path)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Define schema for circuits.csv
+# MAGIC #### DEFINE SCHEMA FOR circuits.csv
 
 # COMMAND ----------
 
@@ -59,7 +59,7 @@ circuits_schema = StructType(fields =
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Step 2. Ingest circuits.csv file
+# MAGIC #### INGEST circuits.csv FILE
 
 # COMMAND ----------
 
@@ -76,7 +76,7 @@ print(raw_path)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Select Required Columns that needs to be processed
+# MAGIC #### SELECT REQUIRED COLUMNS THAT NEEDS TO BE PROCESSED
 
 # COMMAND ----------
 
@@ -93,7 +93,7 @@ display(sel_circuits_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Rename the columns as required
+# MAGIC #### RENAME THE COLUMNS AS REQUIRED
 
 # COMMAND ----------
 
@@ -107,11 +107,11 @@ display(rename_circuits_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Add new columns
+# MAGIC #### ADD NEW COLUMNS
 
 # COMMAND ----------
 
-# MAGIC %run "../Includes/functions"
+# MAGIC %run "../9.Includes/functions"
 
 # COMMAND ----------
 
@@ -124,7 +124,7 @@ display(circuits_final_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Replicate the circuits data inside processed database
+# MAGIC #### REPLICATE THE CIRCUITS DATA INSIDE PROCESSED DB
 
 # COMMAND ----------
 
