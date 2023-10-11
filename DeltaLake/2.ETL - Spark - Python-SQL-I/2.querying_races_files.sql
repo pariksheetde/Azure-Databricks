@@ -1,6 +1,6 @@
 -- Databricks notebook source
 -- MAGIC %md
--- MAGIC ##### Query parquet data file from processed/races
+-- MAGIC #### QUERY PARQUET DATA FILE FROM PROCESSED/RACES (EXTERNAL DATA SOURCES)
 
 -- COMMAND ----------
 
@@ -16,6 +16,12 @@ COUNT(*) AS CNT,
 input_file_name() AS file_name
 FROM parquet.`/mnt/adobeadls/processed/races/*`
 GROUP BY input_file_name();
+
+-- COMMAND ----------
+
+-- MAGIC %md
+-- MAGIC #### CREATE EXTERNAL TABLE TO QUERY DATA FROM PROCESSED DIRECTORY LOADED FROM 
+-- MAGIC #### https://adb-1320557121170389.9.azuredatabricks.net/?o=1320557121170389#notebook/2138863165543167/command/2138863165544265
 
 -- COMMAND ----------
 
@@ -45,8 +51,3 @@ DESC EXTENDED dw_analytics.races_parquet;
 
 -- MAGIC %python
 -- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
-
--- COMMAND ----------
-
--- MAGIC %sql
--- MAGIC DROP TABLE IF EXISTS delta.races_parquet;
