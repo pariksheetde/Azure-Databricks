@@ -24,6 +24,12 @@ ORDER BY CNT DESC;
 
 -- COMMAND ----------
 
+-- MAGIC %md
+-- MAGIC #### CREATE EXTERNAL TABLE TO QUERY DATA FROM PROCESSED DIRECTORY LOADED FROM 
+-- MAGIC #### https://adb-1320557121170389.9.azuredatabricks.net/?o=1320557121170389#notebook/2138863165542933/command/2138863165544089 
+
+-- COMMAND ----------
+
 DROP TABLE IF EXISTS dw_analytics.circuits_parquet;
 CREATE TABLE dw_analytics.circuits_parquet
 (
@@ -53,8 +59,3 @@ DESC EXTENDED dw_analytics.circuits_parquet;
 
 -- MAGIC %python
 -- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
-
--- COMMAND ----------
-
--- MAGIC %sql
--- MAGIC DROP TABLE IF EXISTS delta.circuits_parquet;

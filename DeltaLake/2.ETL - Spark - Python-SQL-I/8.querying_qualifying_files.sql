@@ -35,8 +35,3 @@ DESC EXTENDED dw_analytics.qualifying_parquet;
 
 -- MAGIC %python
 -- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
-
--- COMMAND ----------
-
--- MAGIC %sql
--- MAGIC DROP TABLE IF EXISTS delta.qualifying_parquet;

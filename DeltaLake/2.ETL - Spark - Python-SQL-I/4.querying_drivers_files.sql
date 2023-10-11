@@ -36,8 +36,3 @@ DESC EXTENDED dw_analytics.drivers_json;
 
 -- MAGIC %python
 -- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
-
--- COMMAND ----------
-
--- MAGIC %sql
--- MAGIC DROP TABLE IF EXISTS delta.drivers_json;

@@ -19,6 +19,12 @@ GROUP BY input_file_name();
 
 -- COMMAND ----------
 
+-- MAGIC %md
+-- MAGIC #### CREATE EXTERNAL TABLE TO QUERY DATA FROM PROCESSED DIRECTORY LOADED FROM 
+-- MAGIC #### https://adb-1320557121170389.9.azuredatabricks.net/?o=1320557121170389#notebook/2138863165543448/command/2138863165544516
+
+-- COMMAND ----------
+
 DROP TABLE IF EXISTS dw_analytics.lap_times_csv;
 CREATE TABLE dw_analytics.lap_times_csv
 (
@@ -48,8 +54,3 @@ DESC EXTENDED dw_analytics.lap_times_csv;
 
 -- MAGIC %python
 -- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
-
--- COMMAND ----------
-
--- MAGIC %sql
--- MAGIC DROP TABLE IF EXISTS delta.lap_times_csv;
