@@ -1,6 +1,6 @@
 -- Databricks notebook source
 -- MAGIC %md
--- MAGIC #### WRITE 
+-- MAGIC #### WRITE TRANSFORMATION QUERY
 
 -- COMMAND ----------
 

@@ -1,6 +1,6 @@
 -- Databricks notebook source
 -- MAGIC %md
--- MAGIC ##### QUERY csv data file from processed/lap_times
+-- MAGIC #### QUERY CSV DATA FILE FROM PROCESSED/LAP_TIMES(EXTERNAL DATA SOURCE)
 
 -- COMMAND ----------
 

@@ -1,6 +1,6 @@
 -- Databricks notebook source
 -- MAGIC %md
--- MAGIC ##### Query parquet data file from processed/pit_stops
+-- MAGIC #### QUERY PARQUET DATA FILE FROM PROCESSED/PIT_STOPS(EXTERNAL DATA SOURCE)
 
 -- COMMAND ----------
 

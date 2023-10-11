@@ -1,6 +1,6 @@
 -- Databricks notebook source
 -- MAGIC %md
--- MAGIC ##### Query json data file from processed/drivers
+-- MAGIC #### QUERY JSON DATA FILE FROM PROCESSED/DRIVERS (EXTERNAL DATA SOURCE)
 
 -- COMMAND ----------
 
