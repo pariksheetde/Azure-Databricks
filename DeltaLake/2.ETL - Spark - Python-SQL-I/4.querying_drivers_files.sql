@@ -1,6 +1,6 @@
 -- Databricks notebook source
 -- MAGIC %md
--- MAGIC ##### Query json data file from processed/drivers
+-- MAGIC #### QUERY JSON DATA FILE FROM PROCESSED/DRIVERS (EXTERNAL DATA SOURCE)
 
 -- COMMAND ----------
 
@@ -36,8 +36,3 @@ DESC EXTENDED dw_analytics.drivers_json;
 
 -- MAGIC %python
 -- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
-
--- COMMAND ----------
-
--- MAGIC %sql
--- MAGIC DROP TABLE IF EXISTS delta.drivers_json;

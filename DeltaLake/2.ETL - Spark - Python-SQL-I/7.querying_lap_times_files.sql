@@ -1,6 +1,6 @@
 -- Databricks notebook source
 -- MAGIC %md
--- MAGIC ##### QUERY csv data file from processed/lap_times
+-- MAGIC #### QUERY CSV DATA FILE FROM PROCESSED/LAP_TIMES(EXTERNAL DATA SOURCE)
 
 -- COMMAND ----------
 
@@ -16,6 +16,12 @@ COUNT(*) AS CNT,
 input_file_name() AS file_name
 FROM csv.`/mnt/adobeadls/raw/incremental/2021-03-21/lap_times`
 GROUP BY input_file_name();
+
+-- COMMAND ----------
+
+-- MAGIC %md
+-- MAGIC #### CREATE EXTERNAL TABLE TO QUERY DATA FROM PROCESSED DIRECTORY LOADED FROM 
+-- MAGIC #### https://adb-1320557121170389.9.azuredatabricks.net/?o=1320557121170389#notebook/2138863165543448/command/2138863165544516
 
 -- COMMAND ----------
 
@@ -48,8 +54,3 @@ DESC EXTENDED dw_analytics.lap_times_csv;
 
 -- MAGIC %python
 -- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
-
--- COMMAND ----------
-
--- MAGIC %sql
--- MAGIC DROP TABLE IF EXISTS delta.lap_times_csv;

@@ -1,6 +1,6 @@
 -- Databricks notebook source
 -- MAGIC %md
--- MAGIC ##### Query parquet data file from processed/results
+-- MAGIC #### QUERY PARQUET DATA FILE FROM PROCESSED/RESULTS (EXTERNAL DATA SOURCE)
 
 -- COMMAND ----------
 
@@ -31,8 +31,3 @@ DESC EXTENDED dw_analytics.results_parquet;
 
 -- MAGIC %python
 -- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
-
--- COMMAND ----------
-
--- MAGIC %sql
--- MAGIC DROP TABLE IF EXISTS delta.results_parquet;

@@ -1,6 +1,6 @@
 -- Databricks notebook source
 -- MAGIC %md
--- MAGIC ##### QUERY parquet data file from processed/qualifying
+-- MAGIC #### QUERY PARQUET DATA FILE FROM PROCESSED/QUALIFYING(EXTERNAL DATA SOURCE)
 
 -- COMMAND ----------
 
@@ -35,8 +35,3 @@ DESC EXTENDED dw_analytics.qualifying_parquet;
 
 -- MAGIC %python
 -- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
-
--- COMMAND ----------
-
--- MAGIC %sql
--- MAGIC DROP TABLE IF EXISTS delta.qualifying_parquet;
