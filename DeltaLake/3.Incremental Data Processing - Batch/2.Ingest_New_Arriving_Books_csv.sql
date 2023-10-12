@@ -36,12 +36,11 @@ ON tgt.book_id = src.book_id
 
 -- COMMAND ----------
 
--- MAGIC %python
--- MAGIC dbutils.fs.mv('/mnt/adobeadls/dwanalytics/books/books-csv-new/', '/mnt/adobeadls/dwanalytics/books/archive/',  recurse=True)
+SELECT count(*) AS CNT FROM dw_analytics.books;
 
 -- COMMAND ----------
 
-SELECT count(*) AS CNT FROM dw_analytics.books;
+SELECT * FROM dw_analytics.books ORDER BY 1;
 
 -- COMMAND ----------
 
