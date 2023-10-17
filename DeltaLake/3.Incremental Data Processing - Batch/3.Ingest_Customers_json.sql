@@ -34,6 +34,10 @@ SELECT COUNT(*) AS count FROM dw_analytics.customers;
 
 -- COMMAND ----------
 
+SELECT * FROM dw_analytics.customers LIMIT 10;
+
+-- COMMAND ----------
+
 DESCRIBE EXTENDED dw_analytics.customers;
 
 -- COMMAND ----------
