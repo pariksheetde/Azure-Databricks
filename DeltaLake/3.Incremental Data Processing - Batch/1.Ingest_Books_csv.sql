@@ -56,7 +56,7 @@ SELECT * FROM dw_analytics.books ORDER BY 1;
 
 -- COMMAND ----------
 
-SELECT * FROM dw_analytics.books;
+SELECT * FROM dw_analytics.books ORDER BY 1;
 
 -- COMMAND ----------
 
