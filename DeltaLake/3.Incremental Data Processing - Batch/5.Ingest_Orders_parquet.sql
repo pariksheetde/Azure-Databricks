@@ -17,7 +17,7 @@ CREATE OR REPLACE TABLE dw_analytics.orders
 AS
 SELECT * FROM parquet.`/mnt/adobeadls/dwanalytics/orders/processed/*`;
 
-SELECT * FROM dw_analytics.orders;
+SELECT * FROM dw_analytics.orders ORDER BY 1;
 
 -- COMMAND ----------
 

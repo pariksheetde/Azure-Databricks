@@ -4,20 +4,20 @@
 
 # COMMAND ----------
 
-spark.readStream \
-    .format('cloudFiles') \
-    .option('cloudFiles.format', 'json') \
-    .option('cloudFiles.schemaLocation', '/mnt/adobeadls/dwanalytics/customers/checkpoint/customers_tmp') \
-    .load('/mnt/adobeadls/dwanalytics/customers/customers-json-new/*') \
-    .writeStream \
-    .option('checkpointLocation', '/mnt/adobeadls/dwanalytics/customers/checkpoint/customers_tmp') \
-    .table('dw_analytics.customers_staging')
+# spark.readStream \
+#     .format('cloudFiles') \
+#     .option('cloudFiles.format', 'json') \
+#     .option('cloudFiles.schemaLocation', '/mnt/adobeadls/dwanalytics/customers/checkpoint/customers_tmp') \
+#     .load('/mnt/adobeadls/dwanalytics/customers/customers-json-new/*') \
+#     .writeStream \
+#     .option('checkpointLocation', '/mnt/adobeadls/dwanalytics/customers/checkpoint/customers_tmp') \
+#     .table('dw_analytics.customers_staging')
 
 
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC SELECT count(*) AS CNT FROM dw_analytics.customers_staging;
+# MAGIC -- SELECT count(*) AS CNT FROM dw_analytics.customers_staging;
 
 # COMMAND ----------
 
@@ -40,6 +40,11 @@ spark.readStream \
 # COMMAND ----------
 
 # MAGIC %sql
+# MAGIC SELECT count(*) AS CNT FROM customers_temp_vw;
+
+# COMMAND ----------
+
+# MAGIC %sql
 # MAGIC MERGE INTO dw_analytics.customers tgt
 # MAGIC USING customers_temp_vw src
 # MAGIC ON tgt.customer_id = src.customer_id
@@ -47,6 +52,11 @@ spark.readStream \
 # MAGIC   UPDATE SET tgt.email = src.email, tgt.updated = src.updated
 # MAGIC WHEN NOT MATCHED THEN
 # MAGIC   INSERT *;
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC DESC EXTENDED dw_analytics.customers;
 
 # COMMAND ----------
 
@@ -85,8 +95,3 @@ spark.readStream \
 # COMMAND ----------
 
 dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
-
-# COMMAND ----------
-
-# MAGIC %sql
-# MAGIC DROP TABLE customers_temp_vw;

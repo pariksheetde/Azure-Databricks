@@ -51,6 +51,10 @@ SELECT * FROM dw_analytics.directors_movies ORDER BY 1;
 
 -- COMMAND ----------
 
+DESC EXTENDED dw_analytics.directors_movies;
+
+-- COMMAND ----------
+
 -- MAGIC %python
 -- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
 
