@@ -10,7 +10,7 @@ SELECT
 l.loc_id,
 l.loc_name,
 d.dept_name
-FROM departments d JOIN delta.locations l
+FROM delta.departments d JOIN delta.locations l
 ON d.loc_id = l.loc_id;
 
 -- COMMAND ----------
@@ -24,13 +24,13 @@ SELECT * FROM delta.emp_wise_loc_dept_vw;
 
 -- COMMAND ----------
 
-CREATE TEMP VIEW IF NOT EXISTS emp_wise_loc_dept_temp_vw
+CREATE TEMP VIEW emp_wise_loc_dept_temp_vw
 AS
 SELECT 
 l.loc_id,
 l.loc_name,
 d.dept_name
-FROM departments d JOIN delta.locations l
+FROM delta.departments d JOIN delta.locations l
 ON d.loc_id = l.loc_id;
 
 -- COMMAND ----------
@@ -50,12 +50,12 @@ SELECT
 l.loc_id,
 l.loc_name,
 d.dept_name
-FROM departments d JOIN delta.locations l
+FROM delta.departments d JOIN delta.locations l
 ON d.loc_id = l.loc_id;
 
 -- COMMAND ----------
 
-SELECT * FROM emp_wise_loc_dept_global_temp_vw;
+SELECT * FROM delta.emp_wise_loc_dept_global_temp_vw;
 
 -- COMMAND ----------
 

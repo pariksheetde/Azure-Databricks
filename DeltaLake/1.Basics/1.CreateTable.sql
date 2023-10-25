@@ -1,4 +1,5 @@
 -- Databricks notebook source
+DROP DATABASE IF EXISTS Delta;
 CREATE DATABASE IF NOT EXISTS Delta;
 
 -- COMMAND ----------
@@ -48,3 +49,8 @@ DESC DETAIL delta.locations;
 -- COMMAND ----------
 
 DESC HISTORY delta.locations;
+
+-- COMMAND ----------
+
+-- MAGIC %python
+-- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")

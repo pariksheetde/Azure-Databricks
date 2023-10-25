@@ -1,5 +1,5 @@
 -- Databricks notebook source
-CREATE TABLE IF NOT EXISTS departments
+CREATE OR REPLACE TABLE delta.departments
 (
 dept_id int,
 dept_name varchar(50),
@@ -9,11 +9,7 @@ LOCATION '/mnt/adobeadls/presentation/external/departments'
 
 -- COMMAND ----------
 
-TRUNCATE TABLE departments;
-
--- COMMAND ----------
-
-INSERT INTO departments
+INSERT INTO delta.departments
 VALUES 
 (1000, "PySaprk Developer", 100),
 (1010, "Python Developer", 100),
@@ -22,11 +18,11 @@ VALUES
 
 -- COMMAND ----------
 
-SELECT * FROM departments;
+SELECT * FROM delta.departments;
 
 -- COMMAND ----------
 
-DESC EXTENDED departments;
+DESC EXTENDED delta.departments;
 
 -- COMMAND ----------
 
@@ -35,4 +31,4 @@ DESC EXTENDED departments;
 
 -- COMMAND ----------
 
-DROP TABLE departments;
+DROP TABLE IF EXISTS delta.departments;

@@ -83,7 +83,7 @@ display(rename_races_df)
 
 # COMMAND ----------
 
-# MAGIC %run "../Includes/functions"
+# MAGIC %run "../9.Includes/functions"
 
 # COMMAND ----------
 

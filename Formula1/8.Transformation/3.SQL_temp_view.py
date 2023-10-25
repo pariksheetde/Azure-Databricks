@@ -67,3 +67,7 @@ dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
 # MAGIC FROM global_temp.Race_Results_Global_Temp_VW
 # MAGIC GROUP BY race_year
 # MAGIC ORDER BY race_year desc;
+
+# COMMAND ----------
+
+dbutils.notebook.exit("EXECUTED SUCCESSFULLY")

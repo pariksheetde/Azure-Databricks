@@ -4,4 +4,5 @@ ZORDER BY loc_id;
 
 -- COMMAND ----------
 
-
+-- MAGIC %python
+-- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")

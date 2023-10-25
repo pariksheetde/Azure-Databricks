@@ -157,10 +157,11 @@ results_final_df.write.mode("append").partitionBy("race_id").format("parquet").s
 
 # MAGIC %sql
 # MAGIC SELECT 
-# MAGIC   race_id, count(race_id) as cnt
+# MAGIC   file_date, 
+# MAGIC   count(file_date) as cnt
 # MAGIC   FROM f1_incremental.results
-# MAGIC   GROUP BY race_id
-# MAGIC   ORDER BY race_id DESC;
+# MAGIC   GROUP BY file_date
+# MAGIC   ORDER BY file_date DESC;
 
 # COMMAND ----------
 

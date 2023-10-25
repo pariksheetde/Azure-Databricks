@@ -52,12 +52,22 @@
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC DROP DATABASE IF EXISTS dw_analytics;
+# MAGIC DROP DATABASE IF EXISTS dw_analytics CASCADE;
 
 # COMMAND ----------
 
 # MAGIC %sql
 # MAGIC CREATE DATABASE IF NOT EXISTS dw_analytics;
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC DROP DATABASE IF EXISTS streaming CASCADE;
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC CREATE DATABASE IF NOT EXISTS streaming;
 
 # COMMAND ----------
 

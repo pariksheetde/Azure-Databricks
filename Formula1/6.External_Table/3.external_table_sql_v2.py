@@ -38,7 +38,7 @@
 
 # COMMAND ----------
 
-# MAGIC %fs rm -r "/mnt/presentation/external/race_results_ext_sql_v2"
+# %fs rm -r "/mnt/presentation/external/race_results_ext_sql_v2"
 
 # COMMAND ----------
 
