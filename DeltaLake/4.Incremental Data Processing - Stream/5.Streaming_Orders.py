@@ -1,70 +1,63 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC #### QUERY movies table from Database
+# MAGIC #### LOAD READY TO PROCESS DATA INTO STREAMING.ORDERS TABLE
 
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC SELECT * FROM dw_analytics.directors_movies;
+# MAGIC SELECT COUNT(*) AS CNT FROM parquet.`/mnt/adobeadls/dwanalytics/orders/processed/*.parquet`;
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC DROP TABLE IF EXISTS streaming.orders;
+# MAGIC CREATE TABLE streaming.orders
+# MAGIC AS
+# MAGIC SELECT * FROM parquet.`/mnt/adobeadls/dwanalytics/orders/processed/*.parquet`;
+# MAGIC
+# MAGIC SELECT * FROM streaming.orders;
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC SELECT COUNT(*) AS CNT FROM streaming.orders;
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC #### LOAD NEW ARRIVAL ORDERS DATA
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC DROP TABLE IF EXISTS streaming.orders_staging;
+# MAGIC CREATE TABLE streaming.orders_staging
+# MAGIC SELECT * FROM parquet.`/mnt/adobeadls/dwanalytics/orders/landing_zone/`
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC SELECT COUNT(*) AS CNT FROM streaming.orders_staging;
 
 # COMMAND ----------
 
 spark.readStream \
-    .table("dw_analytics.directors_movies") \
-    .createOrReplaceTempView("directors_movies_streaming_temp_vw")
-
-# COMMAND ----------
-
-# DO NOT DELETE THIS CELL
-
-# %sql
-# SELECT * FROM directors_movies_streaming_temp_vw;
-
-# COMMAND ----------
-
-# DO NOT DELETE THIS CELL
-
-# %sql
-# SELECT
-# count(moviename) as cnt,
-# f_name||' '||l_name as directors
-# FROM directors_movies_streaming_temp_vw
-# GROUP BY directors;
+    .table("streaming.orders_staging") \
+    .createOrReplaceTempView("orders_streaming_temp_new_parquet_vw")
 
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC CREATE OR REPLACE TEMP VIEW directors_movie_aggregation_tmp_vw
-# MAGIC AS
-# MAGIC (
-# MAGIC SELECT 
-# MAGIC count(moviename) as cnt,
-# MAGIC f_name||' '||l_name as directors
-# MAGIC FROM directors_movies_streaming_temp_vw
-# MAGIC GROUP BY directors
-# MAGIC );
+# MAGIC SELECT * FROM orders_streaming_temp_new_parquet_vw;
 
 # COMMAND ----------
 
-# DO NOT DELETE THIS CELL
-
-# %sql
-# SELECT * FROM directors_movie_aggregation_tmp_vw;
-# dbutils.fs.rm("/mnt/adobeadls/dwanalytics/movies/checkpoint/directors_movie_aggregation", True);
-
-# COMMAND ----------
-
-spark.table("directors_movie_aggregation_tmp_vw") \
+spark.table("orders_streaming_temp_new_parquet_vw") \
     .writeStream \
-    .trigger(processingTime = '10 seconds') \
-    .outputMode('complete') \
-    .option("checkpointLocation", "/mnt/adobeadls/dwanalytics/movies/checkpoint/directors_movie_aggregation") \
-    .table("dw_analytics.directors_movie_aggregation")
-
-# COMMAND ----------
-
-# MAGIC %sql
-# MAGIC SELECT * FROM dw_analytics.directors_movie_aggregation;
+    .trigger(processingTime = '5 seconds') \
+    .outputMode("append") \
+    .option("checkpointLocation", "/mnt/adobeadls/dwanalytics/orders/checkpoint/orders") \
+    .table("streaming.orders")
 
 # COMMAND ----------
 
