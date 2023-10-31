@@ -1,94 +1,97 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC #### SPARK STREAMING TO READ FROM dw_analytics.books Table And Load The Data To Temp View
-
-# COMMAND ----------
-
-# MAGIC %python
-# MAGIC dbutils.fs.mkdirs("mnt/adobeadls/dwanalytics/books/books-csv-new/")
-
-# COMMAND ----------
-
-spark.readStream \
-    .table("dw_analytics.books") \
-    .createOrReplaceTempView("books_streaming_temp_vw")
-
-# COMMAND ----------
-
-# DO NOT DELETE THE BELOW CELL
-
-# COMMAND ----------
-
-# %sql
-# SELECT * FROM books_streaming_temp_vw;
-
-# COMMAND ----------
-
-# DO NOT DELETE THE BELOW CELL
-
-# COMMAND ----------
-
-
-# %sql
-# SELECT
-# sum(price) as total_cost,
-# count(category) as cnt_genre,
-# category
-# FROM books_streaming_temp_vw
-# GROUP BY category;
+# MAGIC #### LOAD THE READY TO PROCESS DATA INTO STREAMING.BOOKS TABLE
 
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC CREATE OR REPLACE TEMP VIEW books_aggregation_tmp_vw
-# MAGIC AS
+# MAGIC SELECT * FROM csv.`/mnt/adobeadls/dwanalytics/books/processed/export_*.csv`
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC CREATE OR REPLACE TEMP VIEW books_streaming_temp_processed_vw
 # MAGIC (
-# MAGIC SELECT
-# MAGIC sum(price) as total_cost,
-# MAGIC count(category) as cnt_genre,
-# MAGIC category
-# MAGIC FROM books_streaming_temp_vw
-# MAGIC GROUP BY category
+# MAGIC   book_id STRING,
+# MAGIC   title STRING,
+# MAGIC   author STRING,
+# MAGIC   category STRING,
+# MAGIC   price DOUBLE
+# MAGIC )
+# MAGIC USING CSV
+# MAGIC OPTIONS
+# MAGIC (
+# MAGIC   path = "/mnt/adobeadls/dwanalytics/books/processed/export_*.csv",
+# MAGIC   header = "true",
+# MAGIC   sep = ";"
 # MAGIC );
-
-# COMMAND ----------
-
-# DO NOT DELETE THE BELOW CELL
-
-# COMMAND ----------
-
-# %sql
-# SELECT * FROM books_aggregation_tmp_vw;
-
-# COMMAND ----------
-
-# DO NOT DELETE THIS CELL
-
-# %sql
-# SELECT * FROM books_aggregation_tmp_vw;
-# .option('skipChangeCommits', 'true') \
-# .trigger(availableNow = True) \
+# MAGIC
+# MAGIC SELECT * FROM books_streaming_temp_processed_vw ORDER BY 1;
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### For Aggreagtion, must use complete mode instead of append
-
-# COMMAND ----------
-
-spark.table("books_aggregation_tmp_vw") \
-    .writeStream \
-    .trigger(availableNow = True) \
-    .outputMode('complete') \
-    .option('skipChangeCommits','true') \
-    .option("checkpointLocation", "/mnt/adobeadls/dwanalytics/books/checkpoint/books_aggregation") \
-    .table("dw_analytics.books_aggregation") \
-    .awaitTermination()
+# MAGIC #### LOAD THE DATA INTO DATA WAREHOUSE
 
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC SELECT * FROM dw_analytics.books_aggregation;
+# MAGIC DROP TABLE IF EXISTS streaming.books;
+# MAGIC CREATE TABLE IF NOT EXISTS streaming.books
+# MAGIC AS
+# MAGIC SELECT * FROM books_streaming_temp_processed_vw;
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC DESC EXTENDED streaming.books
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC #### LOAD NEW ARRIVAL BOOKS DATA
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC DROP TABLE IF EXISTS streaming.books_staging;
+# MAGIC CREATE TABLE streaming.books_staging
+# MAGIC (
+# MAGIC     book_id STRING,
+# MAGIC     title STRING,
+# MAGIC     author STRING,
+# MAGIC     category STRING,
+# MAGIC     price DOUBLE
+# MAGIC )
+# MAGIC USING CSV
+# MAGIC OPTIONS
+# MAGIC (
+# MAGIC   path = "/mnt/adobeadls/dwanalytics/books/landing_zone/*.csv",
+# MAGIC   header = "true",
+# MAGIC   sep = ";"
+# MAGIC );
+# MAGIC
+# MAGIC SELECT * FROM streaming.books_staging ORDER BY 1;
+
+# COMMAND ----------
+
+spark.readStream \
+    .table("streaming.books_staging") \
+    .createOrReplaceTempView("books_streaming_temp_new_csv_vw")
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC SELECT * FROM books_streaming_temp_new_csv_vw;
+
+# COMMAND ----------
+
+spark.table("books_streaming_temp_new_csv_vw") \
+    .writeStream \
+    .trigger(processingTime = '5 seconds') \
+    .outputMode("append") \
+    .option("checkpointLocation", "/mnt/adobeadls/dwanalytics/books/checkpoint/books") \
+    .table("streaming.books")
 
 # COMMAND ----------
 

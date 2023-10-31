@@ -1,7 +1,7 @@
 # Databricks notebook source
 # MAGIC %sql
 # MAGIC INSERT INTO dw_analytics.orders
-# MAGIC SELECT * FROM parquet.`/mnt/adobeadls/dwanalytics/orders/orders-new/`
+# MAGIC SELECT * FROM parquet.`/mnt/adobeadls/dwanalytics/orders/landing_zone/`
 
 # COMMAND ----------
 

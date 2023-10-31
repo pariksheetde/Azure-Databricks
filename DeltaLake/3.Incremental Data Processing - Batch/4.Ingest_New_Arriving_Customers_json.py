@@ -1,6 +1,6 @@
 # Databricks notebook source
 # MAGIC %sql
-# MAGIC SELECT * FROM json.`/mnt/adobeadls/dwanalytics/customers/customers-json-new/export_*.json`;
+# MAGIC SELECT * FROM json.`/mnt/adobeadls/dwanalytics/customers/landing_zone/*.json`;
 
 # COMMAND ----------
 
@@ -35,7 +35,7 @@
 
 # MAGIC %sql
 # MAGIC CREATE OR REPLACE TEMP VIEW customers_temp_vw
-# MAGIC AS SELECT * FROM json.`/mnt/adobeadls/dwanalytics/customers/customers-json-new/`;
+# MAGIC AS SELECT * FROM json.`/mnt/adobeadls/dwanalytics/customers/landing_zone/*.json`;
 
 # COMMAND ----------
 

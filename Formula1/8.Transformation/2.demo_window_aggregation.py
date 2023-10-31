@@ -66,3 +66,7 @@ win_all_drivers_df = agg_all_drivers_df.select("race_year", "sum_points", "drive
 .withColumn("rank", rank().over(windowSpec))
 
 display(win_all_drivers_df)
+
+# COMMAND ----------
+
+dbutils.notebook.exit("EXECUTED SUCCESSFULLY")

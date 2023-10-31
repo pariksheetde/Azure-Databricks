@@ -62,7 +62,7 @@ race_results_df.write.mode("overwrite").option("path",f"{presentation_path}/exte
 
 # COMMAND ----------
 
-# MAGIC %fs rm -r "/mnt/adobeadls/presentation/external/race_results_ext_sql_v1"
+# %fs rm -r "/mnt/adobeadls/presentation/external/race_results_ext_sql_v1"
 
 # COMMAND ----------
 

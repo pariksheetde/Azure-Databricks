@@ -4,7 +4,7 @@
 
 -- COMMAND ----------
 
-SELECT * FROM csv.`/mnt/adobeadls/dwanalytics/books/books-csv-new/*.csv`
+SELECT * FROM csv.`/mnt/adobeadls/dwanalytics/books/landing_zone/*.csv`
 
 -- COMMAND ----------
 
@@ -19,7 +19,7 @@ CREATE OR REPLACE TEMP VIEW books_temp_vw
 USING CSV
 OPTIONS
 (
-  path = "/mnt/adobeadls/dwanalytics/books/books-csv-new/*.csv",
+  path = "/mnt/adobeadls/dwanalytics/books/landing_zone/*.csv",
   header = "true",
   sep = ";"
 );
