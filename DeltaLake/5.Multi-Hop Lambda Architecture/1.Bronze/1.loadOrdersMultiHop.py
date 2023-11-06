@@ -5,10 +5,9 @@
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### READ THE ORDERS RAW DATA FROM BELOW ADLS LOCATION.
-# MAGIC #### FILES WILL BE PLACED AT THE BELOW ADLS AT REGULAR INTERVAL. 
-# MAGIC #### AUTOLOADER WILL PICK UP THOSE FILES WHENWVER NEW FILES ARRIVE
-# MAGIC > B WILL READ FROM DELTA
+# MAGIC 1. READ THE ORDERS RAW DATA FROM BELOW ADLS LOCATION.
+# MAGIC 2. FILES WILL BE PLACED AT THE BELOW ADLS AT REGULAR INTERVAL. 
+# MAGIC 3. AUTOLOADER WILL PICK UP THOSE FILES WHENEVER NEW FILES ARRIVE
 
 # COMMAND ----------
 
@@ -36,7 +35,7 @@ spark.readStream \
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC SELECT count(*) FROM orders_tmp;
+# MAGIC SELECT count(*) AS cnt FROM orders_tmp;
 
 # COMMAND ----------
 
@@ -46,6 +45,12 @@ spark.table("orders_tmp") \
     .option("checkpointLocation", "/mnt/adobeadls/dwanalytics/orders/checkpoint/orders_bronze") \
     .outputMode("append") \
     .table("bronze.orders")
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC 1. READ THE CUSTOMERS LOOKUP FROM BELOW ADLS LOCATION.
+# MAGIC 2. LOAD SILVER TABLE DATA INTO TEMP VIEW AS READSTREAM.
 
 # COMMAND ----------
 
