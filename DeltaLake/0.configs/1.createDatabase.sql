@@ -29,5 +29,15 @@
 
 -- COMMAND ----------
 
+-- MAGIC %sql
+-- MAGIC DROP DATABASE IF EXISTS silver CASCADE;
+
+-- COMMAND ----------
+
+-- MAGIC %sql
+-- MAGIC CREATE DATABASE IF NOT EXISTS silver;
+
+-- COMMAND ----------
+
 -- MAGIC %python
 -- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")

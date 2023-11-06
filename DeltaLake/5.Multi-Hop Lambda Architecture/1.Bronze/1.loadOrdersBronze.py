@@ -4,6 +4,14 @@
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC #### READ THE ORDERS RAW DATA FROM BELOW ADLS LOCATION.
+# MAGIC #### FILES WILL BE PLACED AT THE BELOW ADLS AT REGULAR INTERVAL. 
+# MAGIC #### AUTOLOADER WILL PICK UP THOSE FILES WHENWVER NEW FILES ARRIVE
+# MAGIC > B WILL READ FROM DELTA
+
+# COMMAND ----------
+
 files = dbutils.fs.ls("/mnt/adobeadls/dwanalytics/orders/orders-raw/")
 display(files)
 
@@ -27,6 +35,11 @@ spark.readStream \
 
 # COMMAND ----------
 
+# MAGIC %sql
+# MAGIC SELECT count(*) FROM orders_tmp;
+
+# COMMAND ----------
+
 spark.table("orders_tmp") \
     .writeStream \
     .format("delta") \
@@ -36,9 +49,48 @@ spark.table("orders_tmp") \
 
 # COMMAND ----------
 
+spark.read \
+    .format("json") \
+    .load("/mnt/adobeadls/dwanalytics/customers/customers-json/") \
+    .createOrReplaceTempView("customers_lookup")
+
+# COMMAND ----------
+
+spark.readStream.table("bronze.orders") \
+    .createOrReplaceTempView("orders_bronze_temp")
+
+# COMMAND ----------
+
 # MAGIC %sql
-# MAGIC SELECT count(*) AS cnt FROM bronze.orders
+# MAGIC CREATE OR REPLACE TEMPORARY VIEW orders_enriched_tmp
+# MAGIC AS
+# MAGIC (
+# MAGIC   SELECT
+# MAGIC   order_id
+# MAGIC   ,quantity
+# MAGIC   ,o.customer_id
+# MAGIC   ,c.profile:first_name
+# MAGIC   ,c.profile:last_name
+# MAGIC   ,cast(from_unixtime(order_timestamp, 'yyyy-MM-dd HH:mm:ss') AS timestamp) AS order_timestamp
+# MAGIC   ,books
+# MAGIC   FROM orders_bronze_temp o JOIN customers_lookup c
+# MAGIC   ON o.customer_id = c.customer_id
+# MAGIC   WHERE quantity > 0)
+
+# COMMAND ----------
+
+spark.table("orders_enriched_tmp") \
+    .writeStream \
+    .format("delta") \
+    .option("checkpointLocation","/mnt/adobeadls/dwanalytics/orders/checkpoint/orders_silver") \
+    .outputMode("append") \
+    .table("silver.orders")
 
 # COMMAND ----------
 
 dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC TRUNCATE TABLE bronze.orders;
