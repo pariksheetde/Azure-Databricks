@@ -9,7 +9,7 @@ display(race_results_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### DRIVERS'S STANDING
+# MAGIC #### CONSTRUCTORS'S STANDING
 
 # COMMAND ----------
 
