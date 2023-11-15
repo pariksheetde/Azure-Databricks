@@ -14,7 +14,7 @@
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Define the paths for different environments
+# MAGIC ####  DEFINE THE PATHS FOR DIFFERENT ENVIRONMENTS
 
 # COMMAND ----------
 
@@ -111,7 +111,7 @@ display(rename_circuits_df)
 
 # COMMAND ----------
 
-# MAGIC %run "../9.Includes/functions"
+# MAGIC %run "../9.Includes/2.functions"
 
 # COMMAND ----------
 
@@ -123,47 +123,20 @@ display(circuits_final_df)
 
 # COMMAND ----------
 
-# MAGIC %md
-# MAGIC #### WRITE DATA TO DATALAKE AS PARQUET
-
-# COMMAND ----------
-
-circuits_final_df.write.mode("overwrite").parquet(f"{processed_path}/circuits")
-print(processed_path)
+# MAGIC %run "../0.setup/1.connection_parameter"
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### READ THE DATA WE WROTE TO DATALAKE BACK INTO A DATAFRAME TO PROVE THE WRITE WORKED
+# MAGIC #### WRITE DATA TO SNOWFLAKE DW
+# MAGIC 1 DATABASE: RPT
+# MAGIC 2.SCHEMA: HR
+# MAGIC 3.TABLE: CIRCUITS 
 
 # COMMAND ----------
 
-validate_circuits_df = spark.read \
-.parquet(f"{processed_path}/circuits")
-
-display(validate_circuits_df)
-validate_circuits_df.printSchema()
-print(f"Number of Records Read {validate_circuits_df.count()}")
-print(processed_path)
-
-# COMMAND ----------
-
-# MAGIC %sql
-# MAGIC -- SELECT * FROM parquet.`f"{processed_path}/circuits"`;
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC #### REPLICATE THE CIRCUITS DATA INSIDE PROCESSED DATABASE
-
-# COMMAND ----------
-
-# validate_circuits_df.write.mode("overwrite").format("parquet").saveAsTable("f1_processed.circuits")
-
-# COMMAND ----------
-
-# MAGIC %sql
-# MAGIC -- SELECT COUNT(*) as cnt FROM f1_processed.circuits;
+circuits_final_df.write.format("snowflake").options(**connection_parameters) \
+    .option("dbtable", "circuits").mode("overwrite").save()
 
 # COMMAND ----------
 
