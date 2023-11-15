@@ -4,7 +4,7 @@
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Pass the parameter for the file name
+# MAGIC #### PASS THE PARAMETER FOR THE FILE NAME
 
 # COMMAND ----------
 
@@ -14,7 +14,7 @@ v_file_name = dbutils.widgets.get("p_file_name")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Define schema for drivers.json file
+# MAGIC #### Define schema for drivers.json file
 
 # COMMAND ----------
 
@@ -45,7 +45,7 @@ drivers_schema = StructType(fields =
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Ingest constructors.json file
+# MAGIC #### INGEST CONSTRUCTORS.JSON FILE
 
 # COMMAND ----------
 
@@ -60,7 +60,7 @@ print(f"Number of Records Read {drivers_df.count()}")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Explode the columns to extract columns from json object as required
+# MAGIC #### EXPLODE THE COLUMNS TO EXTRACT COLUMNS FROM JSON OBJECT AS REQUIRED
 
 # COMMAND ----------
 
@@ -102,7 +102,7 @@ display(drivers_final_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Write data to DataLake as parquet
+# MAGIC #### WRITE DATA TO DATALAKE AS PARQUET
 
 # COMMAND ----------
 
@@ -111,7 +111,7 @@ drivers_final_df.write.mode("overwrite").parquet(f"{processed_path}/drivers")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Read the data we wrote to DataLake back into a DataFrame to prove the write worked
+# MAGIC #### READ THE DATA WE WROTE TO DATALAKE BACK INTO A DATAFRAME TO PROVE THE WRITE WORKED
 
 # COMMAND ----------
 
@@ -126,7 +126,7 @@ print(f"Number of Records Read {validate_drivers_df.count()}")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Replicate the drivers data inside Processed DB
+# MAGIC #### REPLICATE THE DRIVERS DATA INSIDE PROCESSED DB
 
 # COMMAND ----------
 

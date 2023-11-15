@@ -14,7 +14,7 @@
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Define the paths for different environments
+# MAGIC #### DEFINE THE PATHS FOR DIFFERENT ENVIRONMENTS
 
 # COMMAND ----------
 

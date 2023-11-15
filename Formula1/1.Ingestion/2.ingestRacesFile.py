@@ -4,7 +4,7 @@
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ##### Pass the parameter for the file name
+# MAGIC #### PASS THE PARAMETER FOR THE FILE NAME
 
 # COMMAND ----------
 
@@ -14,7 +14,7 @@ v_data_source = dbutils.widgets.get("p_data_source")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Define schema for races.csv file
+# MAGIC #### DEFINE SCHEMA FOR RACES.CSV FILE
 
 # COMMAND ----------
 
@@ -35,7 +35,7 @@ races_schema = StructType(fields =
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Ingest races.csv file
+# MAGIC #### INGEST RACES.CSV FILE
 
 # COMMAND ----------
 
@@ -51,7 +51,7 @@ print(f"Number of Records Read {races_df.count()}")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Select Required Columns
+# MAGIC #### SELECT REQUIRED COLUMNS
 
 # COMMAND ----------
 
@@ -65,7 +65,7 @@ display(sel_races_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Rename / Drop the columns as required
+# MAGIC #### RENAME / DROP THE COLUMNS AS REQUIRED
 
 # COMMAND ----------
 
@@ -79,7 +79,7 @@ display(rename_races_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Add new columns
+# MAGIC #### ADD NEW COLUMNS
 
 # COMMAND ----------
 
@@ -97,7 +97,7 @@ display(races_with_timestamp_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Write data to DataLake as parquet
+# MAGIC #### WRITE DATA TO DATALAKE AS PARQUET
 
 # COMMAND ----------
 
@@ -107,7 +107,7 @@ print(processed_path)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Read the data we wrote to DataLake back into a DataFrame to prove the write worked
+# MAGIC #### READ THE DATA WE WROTE TO DATALAKE BACK INTO A DATAFRAME TO PROVE THE WRITE WORKED
 
 # COMMAND ----------
 
@@ -121,7 +121,7 @@ print(f"Number of Records Read {validate_races_df.count()}")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Replicate the races data inside processed database
+# MAGIC #### REPLICATE THE RACES DATA INSIDE PROCESSED DATABASE
 
 # COMMAND ----------
 
