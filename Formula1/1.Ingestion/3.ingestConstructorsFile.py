@@ -4,7 +4,7 @@
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Pass the parameter for the file name
+# MAGIC #### PASS THE PARAMETER FOR THE FILE NAME
 
 # COMMAND ----------
 
@@ -14,7 +14,7 @@ v_data_source = dbutils.widgets.get("p_data_source")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Define schema for constructors.json file
+# MAGIC #### DEFINE SCHEMA FOR CONSTRUCTORS.JSON FILE
 
 # COMMAND ----------
 
@@ -25,7 +25,7 @@ constructor_schema = "constructorId INTEGER, constructorRef STRING, name STRING,
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Ingest constructors.json file
+# MAGIC #### INGEST CONSTRUCTORS.JSON FILE
 
 # COMMAND ----------
 
@@ -41,7 +41,7 @@ print(raw_path)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Rename the columns as required
+# MAGIC #### RENAME THE COLUMNS AS REQUIRED
 
 # COMMAND ----------
 
@@ -61,7 +61,7 @@ display(rename_constructors_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Write data to DataLake as parquet
+# MAGIC #### WRITE DATA TO DATALAKE AS PARQUET
 
 # COMMAND ----------
 
@@ -70,7 +70,7 @@ rename_constructors_df.write.mode("overwrite").parquet(f"{processed_path}/constr
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Read the data we wrote to DataLake back into a DataFrame to prove the write worked
+# MAGIC #### READ THE DATA WE WROTE TO DATALAKE BACK INTO A DATAFRAME TO PROVE THE WRITE WORKED
 
 # COMMAND ----------
 
@@ -84,7 +84,7 @@ print(f"Number of Records Read {validate_constructors_df.count()}")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Replicate the circuits data inside Processed DB
+# MAGIC #### REPLICATE THE CIRCUITS DATA INSIDE PROCESSED DB
 
 # COMMAND ----------
 

@@ -4,7 +4,7 @@
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Pass the parameter for the file name
+# MAGIC #### PASS THE PARAMETER FOR THE FILE NAME
 
 # COMMAND ----------
 
@@ -14,7 +14,7 @@ v_data_source = dbutils.widgets.get("p_data_source")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Define schema for pit_stops.json file
+# MAGIC #### DEFINE SCHEMA FOR PIT_STOPS.JSON FILE
 
 # COMMAND ----------
 
@@ -34,7 +34,7 @@ pit_stops_schema = StructType(fields =
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Ingest results.json file
+# MAGIC #### INGEST PIT_STOPS.JSON FILE
 
 # COMMAND ----------
 
@@ -50,7 +50,7 @@ print(f"Number of Records Read {pit_stops_df.count()}")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Rename the columns as required
+# MAGIC #### RENAME THE COLUMNS AS REQUIRED
 
 # COMMAND ----------
 
@@ -70,7 +70,7 @@ display(pit_stops_renamed_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Write data to DataLake as parquet
+# MAGIC #### WRITE DATA TO DATALAKE AS PARQUET
 
 # COMMAND ----------
 
@@ -79,7 +79,7 @@ pit_stops_renamed_df.write.mode("overwrite").parquet(f"{processed_path}/pit_stop
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Read the data we wrote to DataLake back into a DataFrame to prove the write worked
+# MAGIC #### READ THE DATA WE WROTE TO DATALAKE BACK INTO A DATAFRAME TO PROVE THE WRITE WORKED
 
 # COMMAND ----------
 
@@ -94,7 +94,7 @@ print(processed_path)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Replicate the pit_stops data inside processed database
+# MAGIC #### REPLICATE THE PIT_STOPS DATA INSIDE PROCESSED DATABASE
 
 # COMMAND ----------
 

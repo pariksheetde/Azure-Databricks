@@ -4,7 +4,7 @@
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ####Pass the parameter for the file name
+# MAGIC #### PASS THE PARAMETER FOR THE FILE NAME
 
 # COMMAND ----------
 
@@ -14,7 +14,7 @@ v_data_source = dbutils.widgets.get("p_data_source")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Define schema for lap_times directory
+# MAGIC #### DEFINE SCHEMA FOR LAP_TIMES DIRECTORY
 
 # COMMAND ----------
 
@@ -33,7 +33,7 @@ laps_schema = StructType(fields =
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Ingest lap_times directory
+# MAGIC #### INGEST LAP_TIMES DIRECTORY
 
 # COMMAND ----------
 
@@ -50,7 +50,7 @@ print(raw_path)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Rename the columns as required
+# MAGIC #### RENAME THE COLUMNS AS REQUIRED
 
 # COMMAND ----------
 
@@ -80,7 +80,7 @@ lap_times_renamed_df.write.mode("overwrite").parquet(f"{processed_path}/lap_time
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Read the data we wrote to DataLake back into a DataFrame to prove the write worked
+# MAGIC #### READ THE DATA WE WROTE TO DATALAKE BACK INTO A DATAFRAME TO PROVE THE WRITE WORKED
 
 # COMMAND ----------
 
@@ -94,7 +94,7 @@ print(f"Number of Records Read {validate_lap_times_df.count()}")
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #####Replicate the lap_times data inside Processed DB
+# MAGIC #### REPLICATE THE PIT_STOPS DATA INSIDE PROCESSED DATABASE
 
 # COMMAND ----------
 
