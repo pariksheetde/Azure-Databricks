@@ -39,5 +39,15 @@
 
 -- COMMAND ----------
 
+-- MAGIC %sql
+-- MAGIC DROP DATABASE IF EXISTS gold CASCADE;
+
+-- COMMAND ----------
+
+-- MAGIC %sql
+-- MAGIC CREATE DATABASE IF NOT EXISTS gold;
+
+-- COMMAND ----------
+
 -- MAGIC %python
 -- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")

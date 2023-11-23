@@ -94,11 +94,6 @@ spark.table("orders_enriched_tmp") \
 
 # COMMAND ----------
 
-# MAGIC %md
-# MAGIC #### READ FROM SILVER.ORDERS TABLE TO PERFORM AGGREGATION
-
-# COMMAND ----------
-
 dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
 
 # COMMAND ----------
@@ -106,3 +101,4 @@ dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
 # MAGIC %sql
 # MAGIC TRUNCATE TABLE bronze.orders;
 # MAGIC TRUNCATE TABLE silver.orders;
+# MAGIC TRUNCATE TABLE gold.daily_customers_books;
