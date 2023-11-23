@@ -10,4 +10,4 @@ display(files)
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC SELECT * FROM silver.orders;
+# MAGIC SELECT COUNT(*) AS CNT FROM silver.orders;
