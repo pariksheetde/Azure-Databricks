@@ -16,101 +16,94 @@ DESC EXTENDED dw_analytics.orders;
 
 -- COMMAND ----------
 
--- MAGIC %sql
--- MAGIC SELECT 
--- MAGIC order_id
--- MAGIC ,customer_id
--- MAGIC ,explode(books) as books 
--- MAGIC FROM 
--- MAGIC dw_analytics.orders 
--- MAGIC WHERE order_id = '000000000004243' 
--- MAGIC LIMIT 10;
+SELECT 
+order_id
+,customer_id
+,explode(books) as books 
+FROM 
+dw_analytics.orders 
+WHERE order_id = '000000000004243' 
+LIMIT 10;
 
 -- COMMAND ----------
 
--- MAGIC %sql
--- MAGIC SELECT
--- MAGIC order_id,
--- MAGIC order_timestamp,
--- MAGIC customer_id,
--- MAGIC quantity,
--- MAGIC explode(books) as books
--- MAGIC FROM 
--- MAGIC   (
--- MAGIC     SELECT
--- MAGIC     order_id,
--- MAGIC     order_timestamp,
--- MAGIC     customer_id,
--- MAGIC     quantity,
--- MAGIC     books
--- MAGIC     FROM dw_analytics.orders
--- MAGIC   ) 
--- MAGIC temp;
+SELECT
+order_id,
+order_timestamp,
+customer_id,
+quantity,
+explode(books) as books
+FROM 
+  (
+    SELECT
+    order_id,
+    order_timestamp,
+    customer_id,
+    quantity,
+    books
+    FROM dw_analytics.orders
+  ) 
+temp;
 
 -- COMMAND ----------
 
--- MAGIC %sql
--- MAGIC SELECT
--- MAGIC customer_id,
--- MAGIC collect_set(order_id) AS order_id,
--- MAGIC collect_set(books.book_id) AS book_id
--- MAGIC FROM dw_analytics.orders
--- MAGIC GROUP BY customer_id;
+SELECT
+customer_id,
+collect_set(order_id) AS order_id,
+collect_set(books.book_id) AS book_id
+FROM dw_analytics.orders
+GROUP BY customer_id;
 
 -- COMMAND ----------
 
--- MAGIC %sql
--- MAGIC SELECT
--- MAGIC o.customer_id,
--- MAGIC collect_set(o.books.book_id) AS Before_Flatten,
--- MAGIC array_distinct(flatten(collect_set(o.books.book_id))) AS After_Flatten
--- MAGIC FROM
--- MAGIC dw_analytics.orders o
--- MAGIC GROUP BY customer_id;
+SELECT
+o.customer_id,
+collect_set(o.books.book_id) AS Before_Flatten,
+array_distinct(flatten(collect_set(o.books.book_id))) AS After_Flatten
+FROM
+dw_analytics.orders o
+GROUP BY customer_id;
 
 -- COMMAND ----------
 
--- MAGIC %sql
--- MAGIC SELECT * FROM dw_analytics.orders LIMIT 10;
+SELECT * FROM dw_analytics.orders LIMIT 10;
 
 -- COMMAND ----------
 
--- MAGIC %sql
--- MAGIC CREATE OR REPLACE VIEW dw_analytics.books_ordered
--- MAGIC AS
--- MAGIC SELECT * FROM
--- MAGIC (
--- MAGIC SELECT *, explode(books) AS book FROM dw_analytics.orders) o
--- MAGIC JOIN dw_analytics.books b
--- MAGIC ON o.book.book_id = b.book_id;
--- MAGIC
--- MAGIC SELECT 
--- MAGIC order_id
--- MAGIC ,book_id
--- MAGIC ,title
--- MAGIC ,author
--- MAGIC ,category
--- MAGIC ,order_timestamp
--- MAGIC ,customer_id
--- MAGIC ,quantity
--- MAGIC ,price
--- MAGIC ,total
--- MAGIC FROM dw_analytics.books_ordered
--- MAGIC WHERE order_id = '000000000004243';
+CREATE OR REPLACE VIEW dw_analytics.books_ordered
+AS
+SELECT * FROM
+(
+SELECT *, explode(books) AS book FROM dw_analytics.orders) o
+JOIN dw_analytics.books b
+ON o.book.book_id = b.book_id;
+
+SELECT 
+order_id
+,book_id
+,title
+,author
+,category
+,order_timestamp
+,customer_id
+,quantity
+,price
+,total
+FROM dw_analytics.books_ordered
+WHERE order_id = '000000000004243';
 
 -- COMMAND ----------
 
--- MAGIC %sql
--- MAGIC SELECT * FROM
--- MAGIC (
--- MAGIC   SELECT
--- MAGIC     customer_id
--- MAGIC     ,book.book_id as book_id
--- MAGIC     ,book.quantity as quantity
--- MAGIC     FROM dw_analytics.books_ordered
--- MAGIC ) PIVOT(
--- MAGIC   sum(quantity) FOR book_id IN ('B01', 'B02', 'B03', 'B04', 'B05', 'B06', 'B07', 'B08', 'B09', 'B10', 'B11', 'B12')
--- MAGIC )
+SELECT * FROM
+(
+  SELECT
+    customer_id
+    ,book.book_id as book_id
+    ,book.quantity as quantity
+    FROM dw_analytics.books_ordered
+) PIVOT(
+  sum(quantity) FOR book_id IN ('B01', 'B02', 'B03', 'B04', 'B05', 'B06', 'B07', 'B08', 'B09', 'B10', 'B11', 'B12')
+)
 
 -- COMMAND ----------
 

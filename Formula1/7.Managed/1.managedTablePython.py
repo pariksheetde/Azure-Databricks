@@ -3,14 +3,12 @@
 
 # COMMAND ----------
 
-# MAGIC %python
-# MAGIC race_results_df = spark.read.parquet(f"{presentation_path}/race_results")
-# MAGIC display(race_results_df)
+race_results_df = spark.read.parquet(f"{presentation_path}/race_results")
+display(race_results_df)
 
 # COMMAND ----------
 
-# MAGIC %python
-# MAGIC race_results_df.write.mode("overWrite").format("parquet").saveAsTable("f1_presentation.race_results_managed_python_v1")
+race_results_df.write.mode("overWrite").format("parquet").saveAsTable("f1_presentation.race_results_managed_python_v1")
 
 # COMMAND ----------
 

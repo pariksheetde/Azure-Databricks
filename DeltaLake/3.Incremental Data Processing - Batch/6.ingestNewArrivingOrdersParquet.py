@@ -65,3 +65,7 @@
 
 # MAGIC %sql
 # MAGIC DESC EXTENDED dw_analytics.orders;
+
+# COMMAND ----------
+
+dbutils.notebook.exit("EXECUTED SUCCESSFULLY")

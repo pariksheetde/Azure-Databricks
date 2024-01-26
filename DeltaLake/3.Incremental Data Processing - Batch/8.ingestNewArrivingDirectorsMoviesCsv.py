@@ -58,5 +58,4 @@
 
 # COMMAND ----------
 
-# MAGIC %python
-# MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
+dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
