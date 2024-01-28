@@ -1,4 +1,9 @@
 -- Databricks notebook source
+-- MAGIC %md
+-- MAGIC #### PERFORM TRANSFORMATION ON dw_analytics.orders
+
+-- COMMAND ----------
+
 SELECT * FROM dw_analytics.orders LIMIT 10;
 
 -- COMMAND ----------

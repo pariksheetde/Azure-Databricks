@@ -3,9 +3,8 @@
 
 # COMMAND ----------
 
-# MAGIC %python
-# MAGIC race_results_df = spark.read.parquet(f"{presentation_path}/race_results")
-# MAGIC display(race_results_df)
+race_results_df = spark.read.parquet(f"{presentation_path}/race_results")
+display(race_results_df)
 
 # COMMAND ----------
 
@@ -14,8 +13,7 @@
 
 # COMMAND ----------
 
-# MAGIC %python
-# MAGIC race_results_df.write.mode("overWrite").format("json").option("path", f"{presentation_path}/external/race_results_ext_python_v1").saveAsTable("f1_presentation.race_results_ext_python_v1")
+race_results_df.write.mode("overWrite").format("json").option("path", f"{presentation_path}/external/race_results_ext_python_v1").saveAsTable("f1_presentation.race_results_ext_python_v1")
 
 # COMMAND ----------
 
@@ -39,10 +37,9 @@
 
 # COMMAND ----------
 
-# MAGIC %python
-# MAGIC validate_df = spark.read.json(f"{presentation_path}/external/race_results_ext_python_v1")
-# MAGIC display(validate_df)
-# MAGIC validate_df.count()
+validate_df = spark.read.json(f"{presentation_path}/external/race_results_ext_python_v1")
+display(validate_df)
+validate_df.count()
 
 # COMMAND ----------
 

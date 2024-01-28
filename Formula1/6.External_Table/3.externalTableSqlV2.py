@@ -3,9 +3,8 @@
 
 # COMMAND ----------
 
-# MAGIC %python
-# MAGIC race_results_df = spark.read.parquet(f"{presentation_path}/race_results")
-# MAGIC display(race_results_df)
+race_results_df = spark.read.parquet(f"{presentation_path}/race_results")
+display(race_results_df)
 
 # COMMAND ----------
 
