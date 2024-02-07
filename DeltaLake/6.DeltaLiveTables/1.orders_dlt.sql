@@ -13,7 +13,7 @@ CREATE OR REFRESH STREAMING LIVE TABLE orders_raw
 COMMENT "The raw orders books ingested from orders_raw"
 AS
 SELECT * FROM cloud_files("/mnt/adobeadls/dwanalytics/orders/orders-raw/", "parquet",
-                         map("schema", "order_id STRING, order_timestamp TIMESTAMP, customer_id STRING, quantity INT"))
+                         map("schema", "order_id STRING, order_timestamp LONG, customer_id STRING, quantity LONG"))
 
 -- COMMAND ----------
 
