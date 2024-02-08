@@ -1,10 +1,10 @@
 # Databricks notebook source
-files = dbutils.fs.ls("/mnt/adobeadls/dwanalytics/orders/metadata")
+files = dbutils.fs.ls("/mnt/adobeadls/dwanalytics/orders/dlt")
 display(files)
 
 # COMMAND ----------
 
-files = dbutils.fs.ls("/mnt/adobeadls/dwanalytics/orders/metadata/tables")
+files = dbutils.fs.ls("/mnt/adobeadls/dwanalytics/orders/dlt/tables")
 display(files)
 
 # COMMAND ----------
