@@ -34,10 +34,11 @@ SELECT * FROM JSON.`/mnt/adobeadls/dwanalytics/customers/customers-json/`;
 -- COMMAND ----------
 
 -- MAGIC %md
--- MAGIC | Column 1 | Column 2 |
+-- MAGIC | On Vioaltion | Behaviour |
 -- MAGIC | ----------- | ----------- |
--- MAGIC | Row 1 | Value 1 |
--- MAGIC | Row 2 | Value 2 |
+-- MAGIC | DROP ROW | Discards rows that vioaltes the constraint |
+-- MAGIC | FAIL UPDATE | Violated constraint caused the pipeline to fail |
+-- MAGIC | Omitted  | Records violating the constraint will be kept, and reported in metrics
 
 -- COMMAND ----------
 
