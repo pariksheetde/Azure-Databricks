@@ -51,7 +51,7 @@ GROUP BY author
 
 -- COMMAND ----------
 
--- CREATE LIVE VIEW books_sales
+-- CREATE LIVE TABLE / VIEW books_sales
 -- AS
 -- SELECT
 --   b.title,

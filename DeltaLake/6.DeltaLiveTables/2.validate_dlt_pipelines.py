@@ -9,6 +9,11 @@ display(files)
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC #### VALIDATION FROM ORDERS DLT PIPELINE
+
+# COMMAND ----------
+
 # MAGIC %sql
 # MAGIC SELECT * FROM dlt.orders_raw;
 
@@ -26,6 +31,11 @@ display(files)
 
 # MAGIC %sql
 # MAGIC SELECT * FROM dlt.daily_customer_books_count;
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC #### VALIDATION FROM BOOK DLT PIPELINE
 
 # COMMAND ----------
 
