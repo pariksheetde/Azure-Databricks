@@ -39,5 +39,13 @@ CREATE DATABASE IF NOT EXISTS gold;
 
 -- COMMAND ----------
 
+DROP DATABASE IF EXISTS kafka CASCADE;
+
+-- COMMAND ----------
+
+CREATE DATABASE IF NOT EXISTS kafka;
+
+-- COMMAND ----------
+
 -- MAGIC %python
 -- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
