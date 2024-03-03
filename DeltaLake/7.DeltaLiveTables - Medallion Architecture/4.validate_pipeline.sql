@@ -14,3 +14,11 @@ SELECT COUNT(*) AS CNT FROM kafka.bronze WHERE topic = 'orders';
 -- COMMAND ----------
 
 SELECT * FROM kafka.orders_silver;
+
+-- COMMAND ----------
+
+SELECT COUNT(*) AS CNT FROM kafka.bronze WHERE topic = 'books';
+
+-- COMMAND ----------
+
+SELECT * FROM kafka.books_silver;
