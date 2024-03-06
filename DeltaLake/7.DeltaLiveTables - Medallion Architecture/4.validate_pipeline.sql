@@ -4,6 +4,10 @@
 
 -- COMMAND ----------
 
+SELECT COUNT(*) AS CNT FROM kafka.bronze;
+
+-- COMMAND ----------
+
 SELECT COUNT(*) AS CNT FROM kafka.bronze WHERE topic = 'orders';
 
 -- COMMAND ----------
@@ -21,4 +25,4 @@ SELECT COUNT(*) AS CNT FROM kafka.bronze WHERE topic = 'books';
 
 -- COMMAND ----------
 
-SELECT * FROM kafka.books_silver;
+SELECT * FROM kafka.books_silver ORDER BY end_date DESC, book_id ASC;

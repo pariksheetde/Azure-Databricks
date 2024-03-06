@@ -18,11 +18,6 @@
 
 # COMMAND ----------
 
-# %sql
-# DROP TABLE  kafka.books;
-
-# COMMAND ----------
-
 def scd_books(microBatchDF, batch):
     microBatchDF.createOrReplaceTempView("updates")
 
