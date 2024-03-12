@@ -17,6 +17,13 @@
 # MAGIC   country STRING, 
 # MAGIC   row_time TIMESTAMP
 # MAGIC )
+# MAGIC TBLPROPERTIES (delta.enableChangeDataFeed = true)
+
+# COMMAND ----------
+
+# %sql
+# ALTER TABLE kafka.customer_silvers
+# SET TBLPROPERTIES (delta.enableChangeDataFeed = true)
 
 # COMMAND ----------
 
