@@ -68,3 +68,7 @@ query = (spark.readStream
          .start()
       )
 query.awaitTermination()
+
+# COMMAND ----------
+
+dbutils.notebook.exit("EXECUTED SUCCESSFULLY")

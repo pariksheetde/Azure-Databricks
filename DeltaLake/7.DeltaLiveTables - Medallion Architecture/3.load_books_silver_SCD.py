@@ -47,11 +47,6 @@ def scd_books(microBatchDF, batch):
 
 # COMMAND ----------
 
-# MAGIC %md
-# MAGIC #### DON'T DELETE BELOW CELL
-
-# COMMAND ----------
-
 def process_books():
    from pyspark.sql import functions as F
    books_schema = "book_id STRING, title STRING, author STRING, price DOUBLE, updated TIMESTAMP"
