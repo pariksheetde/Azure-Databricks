@@ -35,7 +35,7 @@ def scd_books(microBatchDF, batch):
         WHERE kafka.books_silver.current = 1 and updates.price <> kafka.books_silver.price
     ) staged_update
     ON kafka.books_silver.book_id = merge_key
-    WHEN MATCHED AND kafka.books_silver.current = 1 and staged_update.price <> kafka.books_silver.price THEN
+    WHEN MATCHED AND kafka.books_silver.current = 1 AND staged_update.price <> kafka.books_silver.price THEN
         UPDATE SET current = 0, end_date = staged_update.updated
     WHEN NOT MATCHED THEN
     INSERT (book_id, title, author, price, current, effective_date, end_date)
