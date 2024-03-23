@@ -57,7 +57,7 @@ def process_books():
          .select("V.*")
          .writeStream
          .foreachBatch(scd_books)
-         .option("checkpointLocation", "/mnt/adobeadls/dwanalytics/orders/kafka/checkpoint/books/silver")
+         .option("checkpointLocation", "/mnt/adobeadls/dwanalytics/orders/kafka/checkpoint/books_scd")
          # .trigger(processingTime='5 seconds')
          .trigger(availableNow=True)
          .start()

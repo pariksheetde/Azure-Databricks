@@ -68,7 +68,7 @@ query = (spark.readStream
          .select("v.*")
          .writeStream
          .foreachBatch(books_upsert)
-         .option("checkpointLocation", "/mnt/adobeadls/dwanalytics/orders/kafka/checkpoint/books_rowtime/silver")
+         .option("checkpointLocation", "/mnt/adobeadls/dwanalytics/orders/kafka/checkpoint/books_rowtime")
          .trigger(availableNow=True)
          .start()
       )
