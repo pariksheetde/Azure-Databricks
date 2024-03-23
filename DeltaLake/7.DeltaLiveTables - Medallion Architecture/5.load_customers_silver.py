@@ -17,7 +17,9 @@
 # MAGIC   country STRING, 
 # MAGIC   row_time TIMESTAMP
 # MAGIC )
-# MAGIC TBLPROPERTIES (delta.enableChangeDataFeed = true)
+# MAGIC TBLPROPERTIES (delta.enableChangeDataFeed = true, 
+# MAGIC               delta.autoOptimize.optimizeWrite = true, 
+# MAGIC               delta.autoOptimize.autoCompact = true);
 
 # COMMAND ----------
 

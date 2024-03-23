@@ -35,3 +35,8 @@ schema = "key BINARY, offset BINARY, partition LONG, timestamp LONG, topic STRIN
 # COMMAND ----------
 
 dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC DESC EXTENDED kafka.bronze

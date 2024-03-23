@@ -1,6 +1,6 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC #### LOAD ORDERS DATA FROM MULTIPLEX BRONZE TABLE INTO KAFKA.CUSTOMERS_SILVER TABLE
+# MAGIC #### LOAD ORDERS DATA FROM MULTIPLEX BRONZE TABLE INTO KAFKA.BOOKS_SILVER TABLE
 
 # COMMAND ----------
 
@@ -16,6 +16,8 @@
 # MAGIC   end_date TIMESTAMP,
 # MAGIC   row_time TIMESTAMP
 # MAGIC )
+# MAGIC TBLPROPERTIES (delta.autoOptimize.optimizeWrite = true, 
+# MAGIC                delta.autoOptimize.autoCompact = true)
 
 # COMMAND ----------
 
