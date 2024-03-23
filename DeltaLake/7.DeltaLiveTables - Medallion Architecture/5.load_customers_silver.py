@@ -72,7 +72,7 @@ query = (spark.readStream
          .join(F.broadcast(country_lookup_df),F.col("country_code") == F.col("code"), "inner")
          .writeStream
          .foreachBatch(customer_upsert)
-         .option("checkpointLocation", "/mnt/adobeadls/dwanalytics/orders/kafka/checkpoint/customers/silver")
+         .option("checkpointLocation", "/mnt/adobeadls/dwanalytics/orders/kafka/checkpoint/customers")
          .trigger(availableNow=True)
          .start()
       )
