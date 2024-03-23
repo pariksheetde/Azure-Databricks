@@ -16,6 +16,8 @@
 # MAGIC   end_date TIMESTAMP,
 # MAGIC   row_time TIMESTAMP
 # MAGIC )
+# MAGIC TBLPROPERTIES (delta.autoOptimize.optimizeWrite = true, 
+# MAGIC                delta.autoOptimize.autoCompact = true)
 
 # COMMAND ----------
 

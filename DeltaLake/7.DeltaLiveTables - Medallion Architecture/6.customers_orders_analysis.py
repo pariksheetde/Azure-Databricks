@@ -18,6 +18,8 @@
 # MAGIC row_time TIMESTAMP,
 # MAGIC processed_timestamp TIMESTAMP
 # MAGIC )
+# MAGIC TBLPROPERTIES (delta.autoOptimize.optimizeWrite = true, 
+# MAGIC                delta.autoOptimize.autoCompact = true);
 
 # COMMAND ----------
 

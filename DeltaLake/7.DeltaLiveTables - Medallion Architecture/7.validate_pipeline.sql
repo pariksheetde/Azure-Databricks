@@ -4,11 +4,6 @@
 
 -- COMMAND ----------
 
--- DROP DATABASE IF EXISTS kafka CASCADE;
--- CREATE DATABASE IF NOT EXISTS kafka;
-
--- COMMAND ----------
-
 SELECT COUNT(*) AS CNT FROM kafka.bronze;
 
 -- COMMAND ----------
@@ -53,7 +48,3 @@ SELECT * FROM kafka.customers_orders;
 
 -- MAGIC %python
 -- MAGIC dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
-
--- COMMAND ----------
-
-SELECT * FROM kafka.books_silver_rowtime;
