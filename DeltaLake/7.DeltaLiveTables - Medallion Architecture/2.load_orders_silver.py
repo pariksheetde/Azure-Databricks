@@ -13,7 +13,7 @@ qry = (spark.readStream.table("kafka.bronze")
        .select(F.from_json(F.col("value").cast("string"), ordersjson_schema).alias("v"))
        .select("V.*")
        .writeStream
-       .option("checkpointLocation", "/mnt/adobeadls/dwanalytics/orders/kafka/checkpoint/orders/silver")
+       .option("checkpointLocation", "/mnt/adobeadls/dwanalytics/orders/kafka/checkpoint/orders")
        .trigger(processingTime='5 seconds')
        .table("kafka.orders_silver")
     )
