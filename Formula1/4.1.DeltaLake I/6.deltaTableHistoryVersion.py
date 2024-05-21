@@ -9,5 +9,4 @@
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC SELECT * FROM f1_delta.driver_merge TIMESTAMP AS OF "2022-07-06T12:52:17.000+0000";
+dbutils.notebook.exit("SUCCESSFULLY EXECUTED")

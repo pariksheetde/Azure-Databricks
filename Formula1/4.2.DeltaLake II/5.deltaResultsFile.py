@@ -1,5 +1,5 @@
 # Databricks notebook source
-# MAGIC %run "../9.Includes/config"
+# MAGIC %run "../9.Includes/1.config"
 
 # COMMAND ----------
 
@@ -75,7 +75,7 @@ print(raw_path)
 
 # COMMAND ----------
 
-# MAGIC %run "../9.Includes/functions"
+# MAGIC %run "../9.Includes/2.functions"
 
 # COMMAND ----------
 
@@ -181,27 +181,22 @@ else:
 
 # COMMAND ----------
 
-# %sql
-# SELECT 
-#   race_id, count(race_id) as cnt 
-#   FROM f1_delta.results
-#   GROUP BY race_id
-#   ORDER BY race_id DESC;
+# MAGIC %sql
+# MAGIC SELECT 
+# MAGIC   race_id, count(race_id) as cnt 
+# MAGIC   FROM f1_delta.results
+# MAGIC   GROUP BY race_id
+# MAGIC   ORDER BY race_id DESC;
 
 # COMMAND ----------
 
 # MAGIC %sql
 # MAGIC SELECT 
 # MAGIC file_date, 
-# MAGIC count(*) as CNT
+# MAGIC COUNT(*) as CNT
 # MAGIC FROM f1_delta.results
 # MAGIC GROUP BY 1;
 
 # COMMAND ----------
 
 dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
-
-# COMMAND ----------
-
-# MAGIC %sql
-# MAGIC drop table f1_delta.results;

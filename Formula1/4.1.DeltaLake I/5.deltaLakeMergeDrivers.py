@@ -1,5 +1,5 @@
 # Databricks notebook source
-# MAGIC %run "../9.includes/config"
+# MAGIC %run "../9.Includes/1.config"
 
 # COMMAND ----------
 

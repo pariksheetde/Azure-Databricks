@@ -1,5 +1,5 @@
 # Databricks notebook source
-# MAGIC %run "../9.Includes/config"
+# MAGIC %run "../9.Includes/1.config"
 
 # COMMAND ----------
 
@@ -54,7 +54,7 @@ print(f"Number of Records Read {pit_stops_df.count()}")
 
 # COMMAND ----------
 
-# MAGIC %run "../9.Includes/functions"
+# MAGIC %run "../9.Includes/2.functions"
 
 # COMMAND ----------
 
