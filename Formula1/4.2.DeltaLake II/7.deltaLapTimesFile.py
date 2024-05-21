@@ -1,5 +1,5 @@
 # Databricks notebook source
-# MAGIC %run "../9.Includes/config"
+# MAGIC %run "../9.Includes/1.config"
 
 # COMMAND ----------
 
@@ -66,7 +66,7 @@ print(raw_path)
 
 # COMMAND ----------
 
-# MAGIC %run "../9.Includes/functions"
+# MAGIC %run "../9.Includes/2.functions"
 
 # COMMAND ----------
 
@@ -163,8 +163,3 @@ else:
 # COMMAND ----------
 
 dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
-
-# COMMAND ----------
-
-# MAGIC %sql
-# MAGIC DROP TABLE f1_delta.lap_times;

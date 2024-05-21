@@ -1,5 +1,5 @@
 # Databricks notebook source
-# MAGIC %run "../9.Includes/config"
+# MAGIC %run "../9.Includes/1.config"
 
 # COMMAND ----------
 
@@ -15,6 +15,10 @@ v_data_source = dbutils.widgets.get("p_data_source")
 
 dbutils.widgets.text("p_file_date", "2021-03-21")
 v_file_date = dbutils.widgets.get("p_file_date")
+
+# COMMAND ----------
+
+print(v_file_date)
 
 # COMMAND ----------
 
@@ -88,7 +92,7 @@ display(rename_races_df)
 
 # COMMAND ----------
 
-# MAGIC %run "../9.Includes/functions"
+# MAGIC %run "../9.Includes/2.functions"
 
 # COMMAND ----------
 
@@ -102,7 +106,7 @@ display(races_with_timestamp_df)
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### REPLICATE THE RACES DATA INSIDE PROCESSED DB
+# MAGIC #### REPLICATE THE RACES DATA INSIDE DELTA DB
 
 # COMMAND ----------
 

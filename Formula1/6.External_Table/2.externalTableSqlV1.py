@@ -1,5 +1,5 @@
 # Databricks notebook source
-# MAGIC %run "../9.Includes/config"
+# MAGIC %run "../9.Includes/1.config"
 
 # COMMAND ----------
 
@@ -24,7 +24,7 @@ race_results_df.write.mode("overwrite").option("path",f"{presentation_path}/exte
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC SELECT COUNT(*) FROM f1_presentation.race_results_ext_python_v2;
+# MAGIC SELECT COUNT(*) AS CNT FROM f1_presentation.race_results_ext_python_v2;
 
 # COMMAND ----------
 

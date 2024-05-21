@@ -4,7 +4,7 @@
 
 # COMMAND ----------
 
-# MAGIC %run "../9.Includes/config"
+# MAGIC %run "../9.Includes/1.config"
 
 # COMMAND ----------
 
@@ -13,8 +13,12 @@
 
 # COMMAND ----------
 
-dbutils.widgets.text("p_data_source", "2021-03-21")
+dbutils.widgets.text("p_data_source", "CIRCUITS")
 v_data_source = dbutils.widgets.get("p_data_source")
+
+# COMMAND ----------
+
+print(v_data_source)
 
 # COMMAND ----------
 
@@ -25,6 +29,10 @@ v_data_source = dbutils.widgets.get("p_data_source")
 
 dbutils.widgets.text("p_file_date", "")
 v_file_date = dbutils.widgets.get("p_file_date")
+
+# COMMAND ----------
+
+print(v_file_date)
 
 # COMMAND ----------
 
@@ -98,7 +106,7 @@ display(rename_circuits_df)
 
 # COMMAND ----------
 
-# MAGIC %run "../9.Includes/functions"
+# MAGIC %run "../9.Includes/2.functions"
 
 # COMMAND ----------
 
@@ -126,12 +134,12 @@ circuits_final_df.write.mode("overwrite").format("delta").saveAsTable("f1_delta.
 # COMMAND ----------
 
 # MAGIC %sql 
-# MAGIC SELECT * FROM f1_delta.circuits;
+# MAGIC SELECT COUNT(*) AS CNT FROM f1_delta.circuits;
 
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC SELECT COUNT(*) AS cnt FROM f1_delta.circuits;
+# MAGIC SELECT * FROM f1_delta.circuits;
 
 # COMMAND ----------
 
