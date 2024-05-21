@@ -111,7 +111,7 @@ display(rename_circuits_df)
 
 # COMMAND ----------
 
-# MAGIC %run "../9.Includes/functions"
+# MAGIC %run "../9.Includes/2.functions"
 
 # COMMAND ----------
 

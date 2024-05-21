@@ -1,5 +1,5 @@
 # Databricks notebook source
-# MAGIC %run "../9.Includes/config"
+# MAGIC %run "../9.Includes/1.config"
 
 # COMMAND ----------
 
@@ -20,6 +20,10 @@ v_data_source = dbutils.widgets.get("p_data_source")
 
 dbutils.widgets.text("p_file_date", "")
 v_file_date = dbutils.widgets.get("p_file_date")
+
+# COMMAND ----------
+
+print(v_file_date)
 
 # COMMAND ----------
 
@@ -62,7 +66,7 @@ print(raw_path)
 
 # COMMAND ----------
 
-# MAGIC %run "../9.Includes/functions"
+# MAGIC %run "../9.Includes/2.functions"
 
 # COMMAND ----------
 

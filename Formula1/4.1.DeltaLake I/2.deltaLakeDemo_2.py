@@ -143,8 +143,3 @@ display(drivers_day3_df)
 # COMMAND ----------
 
 dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
-
-# COMMAND ----------
-
-# MAGIC %sql
-# MAGIC DROP TABLE f1_delta.results;
