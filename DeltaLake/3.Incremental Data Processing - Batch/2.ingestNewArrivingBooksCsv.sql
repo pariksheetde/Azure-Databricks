@@ -1,6 +1,6 @@
 -- Databricks notebook source
 -- MAGIC %md
--- MAGIC #### READ THE NEW ARRIVING BOOKS DATA FROM ADLS (Azure Data Lake Storage)
+-- MAGIC #### READ THE NEW ARRIVING BOOKS DATA FROM ADLS (ADLS)
 
 -- COMMAND ----------
 
