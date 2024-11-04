@@ -1,6 +1,6 @@
 -- Databricks notebook source
 -- MAGIC %md
--- MAGIC #### READ THE BOOKS DATA FROM ADLS (ADLSS)
+-- MAGIC #### READ THE BOOKS DATA FROM ADLS (ADLS)
 
 -- COMMAND ----------
 
