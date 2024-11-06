@@ -7,9 +7,21 @@
 
 # COMMAND ----------
 
+# Ensure that the Databricks cluster has the necessary permissions to access the ADLS path
+# You can set up the necessary permissions by configuring the Azure Data Lake Storage credentials
+
+# Example: Setting up the credentials using a service principal
+spark.conf.set("fs.azure.account.auth.type.adobeadls.dfs.core.windows.net", "OAuth")
+spark.conf.set("fs.azure.account.oauth.provider.type.adobeadls.dfs.core.windows.net", "org.apache.hadoop.fs.azurebfs.oauth2.ClientCredsTokenProvider")
+spark.conf.set("fs.azure.account.oauth2.client.id.adobeadls.dfs.core.windows.net", "3593ecd6-5801-4ab0-9e2c-6b00d3435c75")
+spark.conf.set("fs.azure.account.oauth2.client.secret.adobeadls.dfs.core.windows.net", "W1d8Q~SNsnCtOmmB8seSZR3qrg6wQV1sQ.BSjaUk")
+spark.conf.set("fs.azure.account.oauth2.client.endpoint.adobeadls.dfs.core.windows.net", "https://login.microsoftonline.com/9cd5292d-d337-4834-b68a-15f1ebfcf00c/oauth2/token")
+
+# COMMAND ----------
+
 storage_account_name = "adobeadls"
-client_id = "fd5f716f-1161-44f8-a45d-738c8ae7a59a"
-client_secret = "O-18Q~C~zL-~cs3_QP3gEfSLfTAOLJM~Z2i3obDP"
+client_id = "3593ecd6-5801-4ab0-9e2c-6b00d3435c75"
+client_secret = "W1d8Q~SNsnCtOmmB8seSZR3qrg6wQV1sQ.BSjaUk"
 tenant_id = "9cd5292d-d337-4834-b68a-15f1ebfcf00c"
 
 # COMMAND ----------
@@ -41,7 +53,9 @@ def mount_adls(container_name):
 
 # COMMAND ----------
 
+dbutils.fs.unmount("/mnt/adobeadls/raw")
 mount_adls("raw")
+dbutils.fs.ls("/mnt/adobeadls/raw")
 
 # COMMAND ----------
 
@@ -50,25 +64,43 @@ mount_adls("raw")
 
 # COMMAND ----------
 
+dbutils.fs.unmount("/mnt/adobeadls/processed")
 mount_adls("processed")
+dbutils.fs.ls("/mnt/adobeadls/processed")
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### Mount Etl Container
+# MAGIC #### Mount Retail Container
 
 # COMMAND ----------
 
-mount_adls("etl")
+dbutils.fs.unmount("/mnt/adobeadls/retail")
+mount_adls("retail")
+dbutils.fs.ls("/mnt/adobeadls/retail")
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC #### mount Presentation Container
+# MAGIC #### Mount Presentation Container
+# MAGIC
 
 # COMMAND ----------
 
+dbutils.fs.unmount("/mnt/adobeadls/presentation")
 mount_adls("presentation")
+dbutils.fs.ls("/mnt/adobeadls/presentation")
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC #### Mount Incremental Container
+
+# COMMAND ----------
+
+dbutils.fs.unmount("/mnt/adobeadls/incremental")
+mount_adls("incremental")
+dbutils.fs.ls("/mnt/adobeadls/presentation")
 
 # COMMAND ----------
 
@@ -77,49 +109,16 @@ mount_adls("presentation")
 
 # COMMAND ----------
 
+dbutils.fs.unmount("/mnt/adobeadls/dwanalytics")
 mount_adls("dwanalytics")
+dbutils.fs.ls("/mnt/adobeadls/dwanalytics")
 
 # COMMAND ----------
 
-# MAGIC %md
-# MAGIC #### Mount Presentation Container
-
-# COMMAND ----------
-
-mount_adls("incremental")
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC #### Mount Deltalake Container
-
-# COMMAND ----------
-
+dbutils.fs.unmount("/mnt/adobeadls/deltalake")
 mount_adls("deltalake")
-
-# COMMAND ----------
-
-dbutils.fs.ls("/mnt/adobeadls/raw")
-
-# COMMAND ----------
-
-dbutils.fs.mounts()
+dbutils.fs.ls("/mnt/adobeadls/deltalake")
 
 # COMMAND ----------
 
 dbutils.notebook.exit("EXECUTED SUCCESSFULLY")
-
-# COMMAND ----------
-
-dbutils.fs.unmount("/mnt/adobeadls/raw")
-dbutils.fs.unmount("/mnt/adobeadls/processed")
-dbutils.fs.unmount("/mnt/adobeadls/presentation")
-dbutils.fs.unmount("/mnt/adobeadls/incremental")
-
-# COMMAND ----------
-
-dbutils.fs.ls("/mnt/adobeadls/presentation")
-
-# COMMAND ----------
-
-dbutils.fs.unmount("/mnt/adobeadls/presentation")
